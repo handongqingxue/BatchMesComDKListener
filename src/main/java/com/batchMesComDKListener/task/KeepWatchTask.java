@@ -5,6 +5,7 @@ import com.batchMesComDKListener.util.*;
 public class KeepWatchTask extends Thread {
 	
 	private boolean active;
+	private boolean checked;
 
 	public boolean isActive() {
 		return active;
@@ -14,6 +15,14 @@ public class KeepWatchTask extends Thread {
 		this.active = active;
 	}
 
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -21,8 +30,9 @@ public class KeepWatchTask extends Thread {
 			while (true) {
 				if(!active)
 					break;
+				checked=false;
 				Thread.sleep(3000);
-				//APIUtil.keepWatchOnWorkOrderTest();
+				APIUtil.keepWatchOnWorkOrderTest();
 				System.out.println("Ñ²»Ø¹¤µ¥×´Ì¬........");
 			}
 		} catch (Exception e) {

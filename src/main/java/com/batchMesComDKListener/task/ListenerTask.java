@@ -11,18 +11,46 @@ public class ListenerTask extends Thread implements ActionListener {
 	
 	private KeepWatchTask keepWatchTask;
 	private JButton startJb,stopJb;
+	private int unCheckCount;
 	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		keepWatchTask=StartTask.keepWatchTask;
-		System.out.println("keepWatchTask==="+keepWatchTask);
-		
+		try {
+			keepWatchTask=StartTask.keepWatchTask;
+			System.out.println("keepWatchTask==="+keepWatchTask);
+			while (true) {
+				boolean isChecked = keepWatchTask.isChecked();
+				System.out.println("isChecked1==="+isChecked);
+				if(!isChecked) {
+					keepWatchTask.setChecked(true);
+					System.out.println("isChecked2==="+isChecked);
+					unCheckCount=0;
+				}
+				else {
+					unCheckCount++;
+				}
+				System.out.println("unCheckCount==="+unCheckCount);
+				
+				if(unCheckCount>3) {
+					System.out.println("¸´»î.....");
+					stopDKJavaRunner();
+					startDKJavaRunner();
+					unCheckCount=0;
+					System.out.println("isChecked2==="+isChecked);
+				}
+				Thread.sleep(3000);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void startDKJavaRunner() {
 		keepWatchTask=new KeepWatchTask();
 		keepWatchTask.setActive(true);
+		keepWatchTask.setChecked(true);
 		keepWatchTask.start();
 		System.out.println("isActive==="+keepWatchTask.isActive());
 		System.out.println("bbbbbbbbbbbbbb");
