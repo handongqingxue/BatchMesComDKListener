@@ -66,6 +66,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		System.out.println("11111keepWatchTask==="+keepWatchTask);
 		JFrame jf=new JFrame("¼àÌý");
 		jf.setBounds(0, 0, 800, 600);
+		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.show();
 		
 		JPanel jp=new JPanel(null);
