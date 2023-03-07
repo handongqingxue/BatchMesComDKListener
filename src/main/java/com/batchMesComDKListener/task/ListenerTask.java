@@ -20,26 +20,26 @@ public class ListenerTask extends Thread implements ActionListener {
 			keepWatchTask=StartTask.keepWatchTask;
 			System.out.println("keepWatchTask==="+keepWatchTask);
 			while (true) {
-				boolean isChecked = keepWatchTask.isChecked();
+				boolean isChecked = keepWatchTask.isChecked();//获得巡检进程的检测标识
 				System.out.println("isChecked1==="+isChecked);
-				if(!isChecked) {
+				if(!isChecked) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
 					keepWatchTask.setChecked(true);
 					System.out.println("isChecked2==="+isChecked);
-					unCheckCount=0;
+					unCheckCount=0;//未检测次数清零
 				}
-				else {
+				else {//若中间件的检测标识是已检测，说明停止运行了，就得累加未检测次数，看看是否真的停止运行
 					unCheckCount++;
 				}
 				System.out.println("unCheckCount==="+unCheckCount);
 				
-				if(unCheckCount>3) {
+				if(unCheckCount>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
 					System.out.println("复活.....");
-					stopDKJavaRunner();
-					startDKJavaRunner();
-					unCheckCount=0;
+					stopDKJavaRunner();//先停止中间件进程
+					startDKJavaRunner();//再开启中间件进程，以免占用内存资源
+					unCheckCount=0;//未检测次数归零
 					System.out.println("isChecked2==="+isChecked);
 				}
-				Thread.sleep(3000);
+				Thread.sleep(3000);//每隔三秒检测一次中间件
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -47,6 +47,9 @@ public class ListenerTask extends Thread implements ActionListener {
 		}
 	}
 	
+	/**
+	 * 开启java中间件进程
+	 */
 	private void startDKJavaRunner() {
 		keepWatchTask=new KeepWatchTask();
 		keepWatchTask.setActive(true);
@@ -56,6 +59,9 @@ public class ListenerTask extends Thread implements ActionListener {
 		System.out.println("bbbbbbbbbbbbbb");
 	}
 	
+	/**
+	 * 停止java中间件进程
+	 */
 	private void stopDKJavaRunner() {
 		keepWatchTask.stop();
 		keepWatchTask.setActive(false);

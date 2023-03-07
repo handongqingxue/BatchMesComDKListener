@@ -4,6 +4,9 @@ import com.batchMesComDKListener.util.*;
 
 public class KeepWatchTask extends Thread {
 	
+	/**
+	 * 是否运行
+	 */
 	private boolean active;
 	private boolean checked;
 
@@ -28,7 +31,7 @@ public class KeepWatchTask extends Thread {
 		// TODO Auto-generated method stub
 		try {
 			while (true) {
-				if(!active)
+				if(!active)//不运行了，则跳出巡回检测
 					break;
 				checked=false;
 				Thread.sleep(3000);
