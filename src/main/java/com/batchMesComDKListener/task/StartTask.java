@@ -7,12 +7,12 @@ public class StartTask {
 	
 	public static void main(String[] args) {
 		//´ò°üexe:https://blog.csdn.net/qq_40298902/article/details/114489753
-		keepWatchTask=new KeepWatchTask();
-		keepWatchTask.setActive(true);
+		//keepWatchTask=new KeepWatchTask();
+		//keepWatchTask.setActive(true);
 		listenerTask=new ListenerTask();
 		listenerTask.initJFrame();
 		
-		keepWatchTask.start();
-		listenerTask.start();
+		//keepWatchTask.start();
+		//listenerTask.start();
 	}
 }

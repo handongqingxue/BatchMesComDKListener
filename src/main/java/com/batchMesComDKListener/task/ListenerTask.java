@@ -1,10 +1,14 @@
 package com.batchMesComDKListener.task;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ListenerTask extends Thread implements ActionListener {
@@ -69,24 +73,53 @@ public class ListenerTask extends Thread implements ActionListener {
 	}
 	
 	public void initJFrame() {
+		//https://blog.csdn.net/wxbbbbb/article/details/118855938
 		System.out.println("11111keepWatchTask==="+keepWatchTask);
-		JFrame jf=new JFrame("监听");
-		jf.setBounds(0, 0, 800, 600);
+		JFrame jf=new JFrame("Batch系统通讯服务管理");
+		jf.setBounds(0, 0, 440, 510);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.show();
 		
 		JPanel jp=new JPanel(null);
+		jp.setBackground(new Color(240, 240, 240));
 		jf.add(jp);
 		
-		startJb=new JButton("启动");
-		startJb.setBounds(0, 0, 100, 50);
-		startJb.addActionListener(this);
-		jp.add(startJb);
+		JLabel jl=new JLabel();
+		jl.setBackground(new Color(165, 42, 42));
+		jl.setBounds(50, 300, 100, 40);
+		jl.setOpaque(true);
+		jp.add(jl);
 		
+		JLabel jl2=new JLabel();
+		jl2.setBackground(Color.GREEN);
+		jl2.setBounds(50, 350, 100, 40);
+		jl2.setOpaque(true);
+		jp.add(jl2);
+		
+		jp.add(initStartJButton());
+		
+		jp.add(initStopJButton());
+		
+		Graphics g = jf.getGraphics();
+		g.drawLine(0, 0, 200, 200);
+	}
+	
+	private JButton initStartJButton() {
+		startJb=new JButton("启动");
+		startJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
+		startJb.setBackground(new Color(253, 253, 253));
+		startJb.setBounds(250, 300, 100, 30);
+		startJb.addActionListener(this);
+		return startJb;
+	}
+	
+	private JButton initStopJButton() {
 		stopJb=new JButton("停止");
-		stopJb.setBounds(0, 100, 100, 50);
+		stopJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
+		stopJb.setBackground(new Color(253, 253, 253));
+		stopJb.setBounds(250, 360, 100, 30);
 		stopJb.addActionListener(this);
-		jp.add(stopJb);
+		return stopJb;
 	}
 
 	@Override
