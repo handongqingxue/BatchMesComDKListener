@@ -16,7 +16,7 @@ import javax.swing.border.TitledBorder;
 public class ListenerTask extends Thread implements ActionListener {
 	
 	private KeepWatchTask keepWatchTask;
-	private JButton startJb,stopJb;
+	private JButton saveJb,startJb,stopJb;
 	private int unCheckCount;
 	
 	@Override
@@ -91,17 +91,6 @@ public class ListenerTask extends Thread implements ActionListener {
 		jf.add(initMainJPanel());
 		
 		/*
-		JLabel jl=new JLabel();
-		jl.setBackground(new Color(165, 42, 42));
-		jl.setBounds(50, 300, 100, 40);
-		jl.setOpaque(true);
-		jp.add(jl);
-		
-		JLabel jl2=new JLabel();
-		jl2.setBackground(Color.GREEN);
-		jl2.setBounds(50, 350, 100, 40);
-		jl2.setOpaque(true);
-		jp.add(jl2);
 		
 		jp.add(initStartJButton());
 		
@@ -116,6 +105,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		JPanel jp=new JPanel(null);
 		jp.setSize(400, 510);
 		jp.add(initConnectJPanel());
+		jp.add(initServerJPanel());
 		return jp;
 	}
 	
@@ -123,21 +113,102 @@ public class ListenerTask extends Thread implements ActionListener {
 		JPanel jp=new JPanel(null);
 		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
 		jp.setBorder(BorderFactory.createTitledBorder(lb, "连接", TitledBorder.LEFT, TitledBorder.TOP));
-		jp.setBounds(10, 30, 400, 120);
+		jp.setBounds(10, 30, 400, 180);
 		
+		jp.add(initIPAddressPortJLabel());
+		jp.add(initIPAddressPortJTextField());
+		
+		jp.add(initSqlConnectJLabel());
+		jp.add(initSqlConnectJTextField());
+		
+		jp.add(initSaveJButton());
+		
+		return jp;
+	}
+	
+	private JLabel initIPAddressPortJLabel() {
 		JLabel jl=new JLabel();
 		jl.setText("IP地址端口");
 		jl.setBounds(35, 30, 70, 30);
 		jl.setBackground(Color.RED);
 		jl.setOpaque(true);
-		jp.add(jl);
 		
-		//https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
+		return jl;
+	}
+	
+	private JTextField initIPAddressPortJTextField() {
+		//JTextField显示不了解决方案:https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
 		JTextField jtf=new JTextField();
 		jtf.setBounds(135, 30, 240, 30);
-		jp.add(jtf);
+		
+		return jtf;
+	}
+	
+	private JLabel initSqlConnectJLabel() {
+		JLabel jl=new JLabel();
+		jl.setText("数据库连接");
+		jl.setBounds(35, 80, 70, 30);
+		jl.setBackground(Color.RED);
+		jl.setOpaque(true);
+		
+		return jl;
+	}
+	
+	private JTextField initSqlConnectJTextField() {
+		JTextField jtf=new JTextField();
+		jtf.setBounds(135, 80, 240, 30);
+		
+		return jtf;
+	}
+	
+	private JButton initSaveJButton() {
+		saveJb=new JButton("保存");
+		saveJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
+		saveJb.setBackground(new Color(253, 253, 253));
+		saveJb.setBounds(250, 130, 100, 30);
+		saveJb.addActionListener(this);
+		return saveJb;
+	}
+	
+	private JPanel initServerJPanel() {
+		JPanel jp=new JPanel(null);
+		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
+		jp.setBorder(BorderFactory.createTitledBorder(lb, "服务", TitledBorder.LEFT, TitledBorder.TOP));
+		jp.setBounds(10, 250, 400, 180);
+		//jp.setBackground(Color.RED);
+		jp.add(initLightJPanel());
 		
 		return jp;
+	}
+	
+	private JPanel initLightJPanel() {
+		JPanel jp=new JPanel(null);
+		jp.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
+		//jp.setBackground(Color.RED);
+		jp.setBounds(70, 40, 100, 120);
+		
+		jp.add(initStartJLabel());
+		jp.add(initStopJLabel());
+		
+		return jp;
+	}
+	
+	private JLabel initStartJLabel() {
+		JLabel jl=new JLabel();
+		jl.setBackground(new Color(165, 42, 42));
+		jl.setBounds(10, 10, 80, 40);
+		jl.setOpaque(true);
+
+		return jl;
+	}
+	
+	private JLabel initStopJLabel() {
+		JLabel jl2=new JLabel();
+		jl2.setBackground(Color.GREEN);
+		jl2.setBounds(10, 60, 80, 40);
+		jl2.setOpaque(true);
+
+		return jl2;
 	}
 	
 	private JButton initStartJButton() {
