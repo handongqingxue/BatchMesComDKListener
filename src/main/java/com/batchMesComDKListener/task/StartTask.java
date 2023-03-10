@@ -10,7 +10,7 @@ public class StartTask {
 		//keepWatchTask=new KeepWatchTask();
 		//keepWatchTask.setActive(true);
 		listenerTask=new ListenerTask();
-		listenerTask.initJFrame();
+		listenerTask.initMainJFrame();
 		
 		//keepWatchTask.start();
 		//listenerTask.start();

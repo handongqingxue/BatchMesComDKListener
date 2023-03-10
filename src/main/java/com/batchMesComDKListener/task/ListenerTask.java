@@ -1,7 +1,6 @@
 package com.batchMesComDKListener.task;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 public class ListenerTask extends Thread implements ActionListener {
 	
@@ -72,18 +74,23 @@ public class ListenerTask extends Thread implements ActionListener {
 		System.out.println("ddddddddddddddddd");
 	}
 	
-	public void initJFrame() {
-		//https://blog.csdn.net/wxbbbbb/article/details/118855938
+	public void initMainJFrame() {
+		//https://mbd.baidu.com/ug_share/mbox/4a83aa9e65/share?product=smartapp&tk=06559b750ffdd64b94081e8e3c1fc3d6&share_url=https%3A%2F%2Fsa93g4.smartapps.baidu.com%2Fpages%2Fsquestion%2Fsquestion%3Fqid%3D562121822%26rid%3D1410602677%26_swebfr%3D1%26_swebFromHost%3Dbaiduboxapp&domain=mbd.baidu.com
 		System.out.println("11111keepWatchTask==="+keepWatchTask);
 		JFrame jf=new JFrame("Batch系统通讯服务管理");
 		jf.setBounds(0, 0, 440, 510);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.show();
 		
+		/*
 		JPanel jp=new JPanel(null);
+		LineBorder lb = new LineBorder(Color.BLACK, 1, false);
+		jp.setBorder(BorderFactory.createTitledBorder(lb, "欢迎进入", TitledBorder.LEFT, TitledBorder.TOP));
 		jp.setBackground(new Color(240, 240, 240));
 		jf.add(jp);
+		*/
+		jf.add(initMainJPanel());
 		
+		/*
 		JLabel jl=new JLabel();
 		jl.setBackground(new Color(165, 42, 42));
 		jl.setBounds(50, 300, 100, 40);
@@ -99,9 +106,38 @@ public class ListenerTask extends Thread implements ActionListener {
 		jp.add(initStartJButton());
 		
 		jp.add(initStopJButton());
+		*/
 		
-		Graphics g = jf.getGraphics();
-		g.drawLine(0, 0, 200, 200);
+		//jf.show();
+		jf.setVisible(true);
+	}
+	
+	private JPanel initMainJPanel() {
+		JPanel jp=new JPanel(null);
+		jp.setSize(400, 510);
+		jp.add(initConnectJPanel());
+		return jp;
+	}
+	
+	private JPanel initConnectJPanel() {
+		JPanel jp=new JPanel(null);
+		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
+		jp.setBorder(BorderFactory.createTitledBorder(lb, "连接", TitledBorder.LEFT, TitledBorder.TOP));
+		jp.setBounds(10, 30, 400, 120);
+		
+		JLabel jl=new JLabel();
+		jl.setText("IP地址端口");
+		jl.setBounds(35, 30, 70, 30);
+		jl.setBackground(Color.RED);
+		jl.setOpaque(true);
+		jp.add(jl);
+		
+		//https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
+		JTextField jtf=new JTextField();
+		jtf.setBounds(135, 30, 240, 30);
+		jp.add(jtf);
+		
+		return jp;
 	}
 	
 	private JButton initStartJButton() {
