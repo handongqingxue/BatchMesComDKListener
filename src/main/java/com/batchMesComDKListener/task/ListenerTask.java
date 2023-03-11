@@ -74,6 +74,9 @@ public class ListenerTask extends Thread implements ActionListener {
 		System.out.println("ddddddddddddddddd");
 	}
 	
+	/**
+	 * 初始化主窗口
+	 */
 	public void initMainJFrame() {
 		//https://mbd.baidu.com/ug_share/mbox/4a83aa9e65/share?product=smartapp&tk=06559b750ffdd64b94081e8e3c1fc3d6&share_url=https%3A%2F%2Fsa93g4.smartapps.baidu.com%2Fpages%2Fsquestion%2Fsquestion%3Fqid%3D562121822%26rid%3D1410602677%26_swebfr%3D1%26_swebFromHost%3Dbaiduboxapp&domain=mbd.baidu.com
 		System.out.println("11111keepWatchTask==="+keepWatchTask);
@@ -90,25 +93,27 @@ public class ListenerTask extends Thread implements ActionListener {
 		*/
 		jf.add(initMainJPanel());
 		
-		/*
-		
-		jp.add(initStartJButton());
-		
-		jp.add(initStopJButton());
-		*/
-		
 		//jf.show();
-		jf.setVisible(true);
+		jf.setVisible(true);//一切都加载完之后才显示主窗口
 	}
 	
+	/**
+	 * 初始化主面板
+	 * @return
+	 */
 	private JPanel initMainJPanel() {
 		JPanel jp=new JPanel(null);
 		jp.setSize(400, 510);
 		jp.add(initConnectJPanel());
 		jp.add(initServerJPanel());
+		jp.add(initWatchStateMsgJLabel());
 		return jp;
 	}
 	
+	/**
+	 * 初始化连接区域子面板
+	 * @return
+	 */
 	private JPanel initConnectJPanel() {
 		JPanel jp=new JPanel(null);
 		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
@@ -118,14 +123,18 @@ public class ListenerTask extends Thread implements ActionListener {
 		jp.add(initIPAddressPortJLabel());
 		jp.add(initIPAddressPortJTextField());
 		
-		jp.add(initSqlConnectJLabel());
-		jp.add(initSqlConnectJTextField());
+		jp.add(initDBConnectJLabel());
+		jp.add(initDBConnectJTextField());
 		
 		jp.add(initSaveJButton());
 		
 		return jp;
 	}
 	
+	/**
+	 * 初始化ip地址和端口号标签
+	 * @return
+	 */
 	private JLabel initIPAddressPortJLabel() {
 		JLabel jl=new JLabel();
 		jl.setText("IP地址端口");
@@ -136,6 +145,10 @@ public class ListenerTask extends Thread implements ActionListener {
 		return jl;
 	}
 	
+	/**
+	 * 初始化ip地址和端口号文本框
+	 * @return
+	 */
 	private JTextField initIPAddressPortJTextField() {
 		//JTextField显示不了解决方案:https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
 		JTextField jtf=new JTextField();
@@ -144,7 +157,11 @@ public class ListenerTask extends Thread implements ActionListener {
 		return jtf;
 	}
 	
-	private JLabel initSqlConnectJLabel() {
+	/**
+	 * 初始化数据库连接标签
+	 * @return
+	 */
+	private JLabel initDBConnectJLabel() {
 		JLabel jl=new JLabel();
 		jl.setText("数据库连接");
 		jl.setBounds(35, 80, 70, 30);
@@ -154,13 +171,21 @@ public class ListenerTask extends Thread implements ActionListener {
 		return jl;
 	}
 	
-	private JTextField initSqlConnectJTextField() {
+	/**
+	 * 初始化数据库连接文本框
+	 * @return
+	 */
+	private JTextField initDBConnectJTextField() {
 		JTextField jtf=new JTextField();
 		jtf.setBounds(135, 80, 240, 30);
 		
 		return jtf;
 	}
 	
+	/**
+	 * 初始化保存按钮
+	 * @return
+	 */
 	private JButton initSaveJButton() {
 		saveJb=new JButton("保存");
 		saveJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
@@ -170,6 +195,10 @@ public class ListenerTask extends Thread implements ActionListener {
 		return saveJb;
 	}
 	
+	/**
+	 * 初始化服务区域子面板
+	 * @return
+	 */
 	private JPanel initServerJPanel() {
 		JPanel jp=new JPanel(null);
 		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
@@ -177,23 +206,33 @@ public class ListenerTask extends Thread implements ActionListener {
 		jp.setBounds(10, 250, 400, 180);
 		//jp.setBackground(Color.RED);
 		jp.add(initLightJPanel());
+		jp.add(initStartJButton());
+		jp.add(initStopJButton());
 		
 		return jp;
 	}
 	
+	/**
+	 * 初始化指示灯面板
+	 * @return
+	 */
 	private JPanel initLightJPanel() {
 		JPanel jp=new JPanel(null);
 		jp.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		//jp.setBackground(Color.RED);
 		jp.setBounds(70, 40, 100, 120);
 		
-		jp.add(initStartJLabel());
-		jp.add(initStopJLabel());
+		jp.add(initStartLightJLabel());
+		jp.add(initStopLightJLabel());
 		
 		return jp;
 	}
 	
-	private JLabel initStartJLabel() {
+	/**
+	 * 初始化开始指示灯标签
+	 * @return
+	 */
+	private JLabel initStartLightJLabel() {
 		JLabel jl=new JLabel();
 		jl.setBackground(new Color(165, 42, 42));
 		jl.setBounds(10, 10, 80, 40);
@@ -202,7 +241,11 @@ public class ListenerTask extends Thread implements ActionListener {
 		return jl;
 	}
 	
-	private JLabel initStopJLabel() {
+	/**
+	 * 初始化结束指示灯标签
+	 * @return
+	 */
+	private JLabel initStopLightJLabel() {
 		JLabel jl2=new JLabel();
 		jl2.setBackground(Color.GREEN);
 		jl2.setBounds(10, 60, 80, 40);
@@ -215,7 +258,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		startJb=new JButton("启动");
 		startJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		startJb.setBackground(new Color(253, 253, 253));
-		startJb.setBounds(250, 300, 100, 30);
+		startJb.setBounds(250, 60, 100, 30);
 		startJb.addActionListener(this);
 		return startJb;
 	}
@@ -224,9 +267,19 @@ public class ListenerTask extends Thread implements ActionListener {
 		stopJb=new JButton("停止");
 		stopJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		stopJb.setBackground(new Color(253, 253, 253));
-		stopJb.setBounds(250, 360, 100, 30);
+		stopJb.setBounds(250, 100, 100, 30);
 		stopJb.addActionListener(this);
 		return stopJb;
+	}
+	
+	private JLabel initWatchStateMsgJLabel() {
+		JLabel jl=new JLabel();
+		jl.setText("Watch Dog自侦测功能运行中 心跳功能正常");
+		jl.setBounds(135, 430, 250, 30);
+		jl.setBackground(Color.RED);
+		jl.setOpaque(true);
+		
+		return jl;
 	}
 
 	@Override
