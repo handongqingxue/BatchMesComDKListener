@@ -11,14 +11,14 @@ public class StartTask {
 		keepWatchTask=new KeepWatchTask();
 		keepWatchTask.setActive(true);
 		
-		sendMesBRTask=new SendMesBRTask();
-		sendMesBRTask.setActive(true);
+		//sendMesBRTask=new SendMesBRTask();
+		//sendMesBRTask.setActive(true);
 		
 		listenerTask=new ListenerTask();
 		listenerTask.initMainJFrame();
 		
-		//keepWatchTask.start();
-		sendMesBRTask.start();
+		keepWatchTask.start();
+		//sendMesBRTask.start();
 		listenerTask.start();
 	}
 }

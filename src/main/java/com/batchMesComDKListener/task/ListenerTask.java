@@ -52,8 +52,8 @@ public class ListenerTask extends Thread implements ActionListener {
 					System.out.println("isCheckedKWT2==="+isCheckedKWT);
 				}
 				
-				
-				
+
+				/*
 				boolean isCheckedSMBRT = sendMesBRTask.isChecked();
 				System.out.println("isCheckedSMBRT1==="+isCheckedSMBRT);
 				if(!isCheckedSMBRT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
@@ -73,7 +73,7 @@ public class ListenerTask extends Thread implements ActionListener {
 					unCheckCountSMBRT=0;//未检测次数归零
 					System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
 				}
-				
+				*/
 				
 				
 				

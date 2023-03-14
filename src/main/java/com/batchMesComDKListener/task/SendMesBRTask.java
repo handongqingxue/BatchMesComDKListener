@@ -34,7 +34,7 @@ public class SendMesBRTask extends Thread {
 				if(!active)//不运行了，则跳出巡回检测
 					break;
 				checked=false;
-				Thread.sleep(5000);
+				Thread.sleep(10000);
 				APIUtil.keepWatchOnWOFinish();
 				System.out.println("巡回已完成的工单状态，发送批记录给MES........");
 			}
