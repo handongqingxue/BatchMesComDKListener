@@ -14,8 +14,8 @@ import org.json.JSONObject;
 
 public class APIUtil {
 
-	//public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
-	public static final String SERVICE_URL="http://192.168.1.108:8080/BatchMesComDK/batch/";
+	public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
+	//public static final String SERVICE_URL="http://192.168.1.108:8080/BatchMesComDK/batch/";
 
 	//https://www.cnblogs.com/aeolian/p/7746158.html
 	//https://www.cnblogs.com/bobc/p/8809761.html
@@ -72,6 +72,24 @@ public class APIUtil {
 		JSONObject resultJO = null;
 		try {
 	        resultJO = doHttp("keepWatchOnWorkOrderTest",null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	/**
+	 * 巡检已完成的工单状态
+	 * @return
+	 */
+	public static JSONObject keepWatchOnWOFinish() {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+	        resultJO = doHttp("getSendToMesBRData",null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

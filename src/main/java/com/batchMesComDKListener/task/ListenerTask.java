@@ -16,8 +16,10 @@ import javax.swing.border.TitledBorder;
 public class ListenerTask extends Thread implements ActionListener {
 	
 	private KeepWatchTask keepWatchTask;
+	private SendMesBRTask sendMesBRTask;
 	private JButton saveJb,startJb,stopJb;
-	private int unCheckCount;
+	private int unCheckCountKWT;
+	private int unCheckCountSMBRT;
 	
 	@Override
 	public void run() {
@@ -25,26 +27,56 @@ public class ListenerTask extends Thread implements ActionListener {
 		try {
 			keepWatchTask=StartTask.keepWatchTask;
 			System.out.println("keepWatchTask==="+keepWatchTask);
+			
+			sendMesBRTask=StartTask.sendMesBRTask;
+			System.out.println("sendMesBRTask==="+sendMesBRTask);
+			
 			while (true) {
-				boolean isChecked = keepWatchTask.isChecked();//获得巡检进程的检测标识
-				System.out.println("isChecked1==="+isChecked);
-				if(!isChecked) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
+				boolean isCheckedKWT = keepWatchTask.isChecked();//获得巡检进程的检测标识
+				System.out.println("isCheckedKWT1==="+isCheckedKWT);
+				if(!isCheckedKWT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
 					keepWatchTask.setChecked(true);
-					System.out.println("isChecked2==="+isChecked);
-					unCheckCount=0;//未检测次数清零
+					System.out.println("isCheckedKWT2==="+isCheckedKWT);
+					unCheckCountKWT=0;//未检测次数清零
 				}
 				else {//若中间件的检测标识是已检测，说明停止运行了，就得累加未检测次数，看看是否真的停止运行
-					unCheckCount++;
+					unCheckCountKWT++;
 				}
-				System.out.println("unCheckCount==="+unCheckCount);
+				System.out.println("unCheckCountKWT==="+unCheckCountKWT);
 				
-				if(unCheckCount>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
+				if(unCheckCountKWT>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
 					System.out.println("复活.....");
 					stopDKJavaRunner();//先停止中间件进程
 					startDKJavaRunner();//再开启中间件进程，以免占用内存资源
-					unCheckCount=0;//未检测次数归零
-					System.out.println("isChecked2==="+isChecked);
+					unCheckCountKWT=0;//未检测次数归零
+					System.out.println("isCheckedKWT2==="+isCheckedKWT);
 				}
+				
+				
+				
+				boolean isCheckedSMBRT = sendMesBRTask.isChecked();
+				System.out.println("isCheckedSMBRT1==="+isCheckedSMBRT);
+				if(!isCheckedSMBRT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
+					sendMesBRTask.setChecked(true);
+					System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
+					unCheckCountSMBRT=0;//未检测次数清零
+				}
+				else {//若中间件的检测标识是已检测，说明停止运行了，就得累加未检测次数，看看是否真的停止运行
+					unCheckCountSMBRT++;
+				}
+				System.out.println("unCheckCountSMBRT==="+unCheckCountSMBRT);
+				
+				if(unCheckCountSMBRT>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
+					System.out.println("复活.....");
+					stopDKJavaBRRunner();//先停止中间件进程
+					startDKJavaBRRunner();//再开启中间件进程，以免占用内存资源
+					unCheckCountSMBRT=0;//未检测次数归零
+					System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
+				}
+				
+				
+				
+				
 				Thread.sleep(3000);//每隔三秒检测一次中间件
 			}
 		} catch (Exception e) {
@@ -71,6 +103,21 @@ public class ListenerTask extends Thread implements ActionListener {
 	private void stopDKJavaRunner() {
 		keepWatchTask.stop();
 		keepWatchTask.setActive(false);
+		System.out.println("ddddddddddddddddd");
+	}
+	
+	private void startDKJavaBRRunner() {
+		sendMesBRTask=new SendMesBRTask();
+		sendMesBRTask.setActive(true);
+		sendMesBRTask.setChecked(true);
+		sendMesBRTask.start();
+		System.out.println("isActive==="+sendMesBRTask.isActive());
+		System.out.println("bbbbbbbbbbbbbb");
+	}
+	
+	private void stopDKJavaBRRunner() {
+		sendMesBRTask.stop();
+		sendMesBRTask.setActive(false);
 		System.out.println("ddddddddddddddddd");
 	}
 	
@@ -190,7 +237,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		saveJb=new JButton("保存");
 		saveJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		saveJb.setBackground(new Color(253, 253, 253));
-		saveJb.setBounds(250, 130, 100, 30);
+		saveJb.setBounds(253, 130, 120, 30);
 		saveJb.addActionListener(this);
 		return saveJb;
 	}
@@ -235,7 +282,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	private JLabel initStartLightJLabel() {
 		JLabel jl=new JLabel();
 		jl.setBackground(new Color(165, 42, 42));
-		jl.setBounds(10, 10, 80, 40);
+		jl.setBounds(10, 10, 60, 40);
 		jl.setOpaque(true);
 
 		return jl;
@@ -248,7 +295,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	private JLabel initStopLightJLabel() {
 		JLabel jl2=new JLabel();
 		jl2.setBackground(Color.GREEN);
-		jl2.setBounds(10, 60, 80, 40);
+		jl2.setBounds(10, 60, 60, 40);
 		jl2.setOpaque(true);
 
 		return jl2;
@@ -258,7 +305,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		startJb=new JButton("启动");
 		startJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		startJb.setBackground(new Color(253, 253, 253));
-		startJb.setBounds(250, 60, 100, 30);
+		startJb.setBounds(253, 60, 120, 30);
 		startJb.addActionListener(this);
 		return startJb;
 	}
@@ -267,7 +314,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		stopJb=new JButton("停止");
 		stopJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
 		stopJb.setBackground(new Color(253, 253, 253));
-		stopJb.setBounds(250, 100, 100, 30);
+		stopJb.setBounds(253, 100, 120, 30);
 		stopJb.addActionListener(this);
 		return stopJb;
 	}
@@ -289,10 +336,12 @@ public class ListenerTask extends Thread implements ActionListener {
 		if(source==startJb) {
 			System.out.println("aaaaaaaaaaaaaa");
 			startDKJavaRunner();
+			startDKJavaBRRunner();
 		}
 		else if(source==stopJb) {
 			System.out.println("bbbbbbbbbbbbb");
 			stopDKJavaRunner();
+			stopDKJavaBRRunner();
 		}
 	}
 
