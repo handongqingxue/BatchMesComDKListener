@@ -189,8 +189,8 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JLabel initIPAddressPortJLabel() {
 		JLabel jl=new JLabel();
-		jl.setText("IP地址端口");
-		jl.setBounds(35, 30, 70, 30);
+		jl.setText(Constant.IP_ADDRESS_PORT_JLABEL_TEXT);
+		jl.setBounds(Constant.IP_ADDRESS_PORT_JLABEL_X, Constant.IP_ADDRESS_PORT_JLABEL_Y, Constant.IP_ADDRESS_PORT_JLABEL_WIDTH, Constant.IP_ADDRESS_PORT_JLABEL_HEIGHT);
 		//jl.setBackground(Color.RED);
 		//jl.setOpaque(true);
 		
@@ -204,7 +204,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	private JTextField initIPAddressPortJTextField() {
 		//JTextField显示不了解决方案:https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
 		JTextField jtf=new JTextField();
-		jtf.setBounds(135, 30, 240, 30);
+		jtf.setBounds(Constant.IP_ADDRESS_PORT_JTEXTFIELD_X, Constant.IP_ADDRESS_PORT_JTEXTFIELD_Y, Constant.IP_ADDRESS_PORT_JTEXTFIELD_WIDTH, Constant.IP_ADDRESS_PORT_JTEXTFIELD_HEIGHT);
 		
 		return jtf;
 	}
@@ -215,8 +215,8 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JLabel initDBConnectJLabel() {
 		JLabel jl=new JLabel();
-		jl.setText("数据库连接");
-		jl.setBounds(35, 80, 70, 30);
+		jl.setText(Constant.DB_CONNECT_JLABEL_TEXT);
+		jl.setBounds(Constant.DB_CONNECT_JLABEL_X, Constant.DB_CONNECT_JLABEL_Y, Constant.DB_CONNECT_JLABEL_WIDTH, Constant.DB_CONNECT_JLABEL_HEIGHT);
 		//jl.setBackground(Color.RED);
 		//jl.setOpaque(true);
 		
@@ -229,7 +229,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JTextField initDBConnectJTextField() {
 		JTextField jtf=new JTextField();
-		jtf.setBounds(135, 80, 240, 30);
+		jtf.setBounds(Constant.DB_CONNECT_JTEXTFIELD_X, Constant.DB_CONNECT_JTEXTFIELD_Y, Constant.DB_CONNECT_JTEXTFIELD_WIDTH, Constant.DB_CONNECT_JTEXTFIELD_HEIGHT);
 		
 		return jtf;
 	}
@@ -239,9 +239,9 @@ public class ListenerTask extends Thread implements ActionListener {
 	 * @return
 	 */
 	private JButton initSaveJButton() {
-		saveJb=new JButton("保存");
-		saveJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
-		saveJb.setBackground(new Color(253, 253, 253));
+		saveJb=new JButton(Constant.SAVE_JBUTTON_TEXT);
+		saveJb.setBorder(BorderFactory.createLineBorder(new Color(Constant.SAVE_JBUTTON_BORDER_COLOR_R, Constant.SAVE_JBUTTON_BORDER_COLOR_G, Constant.SAVE_JBUTTON_BORDER_COLOR_B)));
+		saveJb.setBackground(new Color(Constant.SAVE_JBUTTON_BG_COLOR_R, Constant.SAVE_JBUTTON_BG_COLOR_R, Constant.SAVE_JBUTTON_BG_COLOR_R));
 		saveJb.setBounds(253, 130, 120, 30);
 		saveJb.addActionListener(this);
 		return saveJb;

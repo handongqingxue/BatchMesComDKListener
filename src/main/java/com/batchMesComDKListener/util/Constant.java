@@ -65,4 +65,111 @@ public class Constant {
 	 * 初始化连接区域子面板高度
 	 */
 	public static final int CONNECT_JPANEL_HEIGHT=180;
+	
+	/**
+	 * ip地址和端口号标签文字
+	 */
+	public static final String IP_ADDRESS_PORT_JLABEL_TEXT="IP地址端口";
+	/**
+	 * ip地址和端口号标签x坐标
+	 */
+	public static final int IP_ADDRESS_PORT_JLABEL_X=35;
+	/**
+	 * ip地址和端口号标签y坐标
+	 */
+	public static final int IP_ADDRESS_PORT_JLABEL_Y=30;
+	/**
+	 * ip地址和端口号标签宽度
+	 */
+	public static final int IP_ADDRESS_PORT_JLABEL_WIDTH=70;
+	/**
+	 * ip地址和端口号标签高度
+	 */
+	public static final int IP_ADDRESS_PORT_JLABEL_HEIGHT=30;
+	
+	/**
+	 * ip地址和端口号文本框x坐标
+	 */
+	public static final int IP_ADDRESS_PORT_JTEXTFIELD_X=135;
+	/**
+	 * ip地址和端口号文本框y坐标
+	 */
+	public static final int IP_ADDRESS_PORT_JTEXTFIELD_Y=30;
+	/**
+	 * ip地址和端口号文本框宽度
+	 */
+	public static final int IP_ADDRESS_PORT_JTEXTFIELD_WIDTH=240;
+	/**
+	 * ip地址和端口号文本框高度
+	 */
+	public static final int IP_ADDRESS_PORT_JTEXTFIELD_HEIGHT=30;
+	
+	/**
+	 * 数据库连接标签文字
+	 */
+	public static final String DB_CONNECT_JLABEL_TEXT="数据库连接";
+	/**
+	 * 数据库连接标签x坐标
+	 */
+	public static final int DB_CONNECT_JLABEL_X=35;
+	/**
+	 * 数据库连接标签y坐标
+	 */
+	public static final int DB_CONNECT_JLABEL_Y=80;
+	/**
+	 * 数据库连接标签宽度
+	 */
+	public static final int DB_CONNECT_JLABEL_WIDTH=70;
+	/**
+	 * 数据库连接标签高度
+	 */
+	public static final int DB_CONNECT_JLABEL_HEIGHT=30;
+	
+	/**
+	 * 数据库连接文本框x坐标
+	 */
+	public static final int DB_CONNECT_JTEXTFIELD_X=135;
+	/**
+	 * 数据库连接文本框y坐标
+	 */
+	public static final int DB_CONNECT_JTEXTFIELD_Y=80;
+	/**
+	 * 数据库连接文本框宽度
+	 */
+	public static final int DB_CONNECT_JTEXTFIELD_WIDTH=240;
+	/**
+	 * 数据库连接文本框高度
+	 */
+	public static final int DB_CONNECT_JTEXTFIELD_HEIGHT=30;
+	
+	/**
+	 * 保存按钮文字
+	 */
+	public static final String SAVE_JBUTTON_TEXT="保存";
+	
+	/**
+	 * 保存按钮边框三原色红
+	 */
+	public static final int SAVE_JBUTTON_BORDER_COLOR_R=191;
+	/**
+	 * 保存按钮边框三原色绿
+	 */
+	public static final int SAVE_JBUTTON_BORDER_COLOR_G=191;
+	/**
+	 * 保存按钮边框三原色蓝
+	 */
+	public static final int SAVE_JBUTTON_BORDER_COLOR_B=191;
+	
+	/**
+	 * 保存按钮背景色三原色红
+	 */
+	public static final int SAVE_JBUTTON_BG_COLOR_R=253;
+	/**
+	 * 保存按钮背景色三原色绿
+	 */
+	public static final int SAVE_JBUTTON_BG_COLOR_G=253;
+	/**
+	 * 保存按钮背景色三原色蓝
+	 */
+	public static final int SAVE_JBUTTON_BG_COLOR_B=253;
 }
