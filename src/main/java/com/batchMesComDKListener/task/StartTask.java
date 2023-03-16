@@ -8,8 +8,8 @@ public class StartTask {
 	
 	public static void main(String[] args) {
 		//´ò°üexe:https://blog.csdn.net/qq_40298902/article/details/114489753
-		keepWatchTask=new KeepWatchTask();
-		keepWatchTask.setActive(true);
+		//keepWatchTask=new KeepWatchTask();
+		//keepWatchTask.setActive(true);
 		
 		//sendMesBRTask=new SendMesBRTask();
 		//sendMesBRTask.setActive(true);
@@ -17,7 +17,7 @@ public class StartTask {
 		listenerTask=new ListenerTask();
 		listenerTask.initMainJFrame();
 		
-		keepWatchTask.start();
+		//keepWatchTask.start();
 		//sendMesBRTask.start();
 		listenerTask.start();
 	}
