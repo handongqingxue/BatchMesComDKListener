@@ -172,4 +172,194 @@ public class Constant {
 	 * 保存按钮背景色三原色蓝
 	 */
 	public static final int SAVE_JBUTTON_BG_COLOR_B=253;
+	
+	/**
+	 * 保存按钮x坐标
+	 */
+	public static final int SAVE_JBUTTON_X=253;
+	/**
+	 * 保存按钮y坐标
+	 */
+	public static final int SAVE_JBUTTON_Y=130;
+	/**
+	 * 保存按钮宽度
+	 */
+	public static final int SAVE_JBUTTON_WIDTH=120;
+	/**
+	 * 保存按钮高度
+	 */
+	public static final int SAVE_JBUTTON_HEIGHT=30;
+	
+	/**
+	 * 服务区域子面板边框三原色红
+	 */
+	public static final int SERVER_JPANEL_BORDER_COLOR_R=222;
+	/**
+	 * 服务区域子面板边框三原色绿
+	 */
+	public static final int SERVER_JPANEL_BORDER_COLOR_G=222;
+	/**
+	 * 服务区域子面板边框三原色蓝
+	 */
+	public static final int SERVER_JPANEL_BORDER_COLOR_B=222;
+	
+	/**
+	 * 服务区域子面板边框标题
+	 */
+	public static final String SERVER_JPANEL_BORDER_TITLE="服务";
+	
+	/**
+	 * 服务区域子面板x坐标
+	 */
+	public static final int SERVER_JPANEL_X=10;
+	/**
+	 * 服务区域子面板y坐标
+	 */
+	public static final int SERVER_JPANEL_Y=250;
+	/**
+	 * 服务区域子面板宽度
+	 */
+	public static final int SERVER_JPANEL_WIDTH=400;
+	/**
+	 * 服务区域子面板高度
+	 */
+	public static final int SERVER_JPANEL_HEIGHT=180;
+	
+	/**
+	 * 指示灯面板边框三原色红
+	 */
+	public static final int LIGHT_JPANEL_BORDER_COLOR_R=191;
+	/**
+	 * 指示灯面板边框三原色绿
+	 */
+	public static final int LIGHT_JPANEL_BORDER_COLOR_G=191;
+	/**
+	 * 指示灯面板边框三原色蓝
+	 */
+	public static final int LIGHT_JPANEL_BORDER_COLOR_B=191;
+	
+	/**
+	 * 指示灯面板x坐标
+	 */
+	public static final int LIGHT_JPANEL_X=70;
+	/**
+	 * 指示灯面板y坐标
+	 */
+	public static final int LIGHT_JPANEL_Y=40;
+	/**
+	 * 指示灯面板宽度
+	 */
+	public static final int LIGHT_JPANEL_WIDTH=90;
+	/**
+	 * 指示灯面板高度
+	 */
+	public static final int LIGHT_JPANEL_HEIGHT=120;
+	
+	/**
+	 * 开始指示灯标签x坐标
+	 */
+	public static final int START_LIGHT_JLABEL_X=10;
+	/**
+	 * 开始指示灯标签y坐标
+	 */
+	public static final int START_LIGHT_JLABEL_Y=10;
+	/**
+	 * 开始指示灯标签宽度
+	 */
+	public static final int START_LIGHT_JLABEL_WIDTH=70;
+	/**
+	 * 开始指示灯标签高度
+	 */
+	public static final int START_LIGHT_JLABEL_HEIGHT=40;
+	
+	/**
+	 * 结束指示灯标签x坐标
+	 */
+	public static final int STOP_LIGHT_JLABEL_X=10;
+	/**
+	 * 结束指示灯标签y坐标
+	 */
+	public static final int STOP_LIGHT_JLABEL_Y=65;
+	/**
+	 * 结束指示灯标签宽度
+	 */
+	public static final int STOP_LIGHT_JLABEL_WIDTH=70;
+	/**
+	 * 结束指示灯标签高度
+	 */
+	public static final int STOP_LIGHT_JLABEL_HEIGHT=40;
+	
+	/**
+	 * 开始指示灯标签开始背景色三原色红
+	 */
+	public static final int START_LIGHT_JLABEL_START_BG_COLOR_R=165;
+	/**
+	 * 开始指示灯标签开始背景色三原色绿
+	 */
+	public static final int START_LIGHT_JLABEL_START_BG_COLOR_G=42;
+	/**
+	 * 开始指示灯标签开始背景色三原色蓝
+	 */
+	public static final int START_LIGHT_JLABEL_START_BG_COLOR_B=42;
+	
+	/**
+	 * 结束指示灯标签开始背景色三原色红
+	 */
+	public static final int STOP_LIGHT_JLABEL_START_BG_COLOR_R=38;
+	/**
+	 * 结束指示灯标签开始背景色三原色绿
+	 */
+	public static final int STOP_LIGHT_JLABEL_START_BG_COLOR_G=139;
+	/**
+	 * 结束指示灯标签开始背景色三原色蓝
+	 */
+	public static final int STOP_LIGHT_JLABEL_START_BG_COLOR_B=11;
+	
+	/**
+	 * 启动按钮文字
+	 */
+	public static final String START_JBUTTON_TEXT="启动";
+	
+	/**
+	 * 启动按钮边框三原色红
+	 */
+	public static final int START_JBUTTON_BORDER_COLOR_R=191;
+	/**
+	 * 启动按钮边框三原色绿
+	 */
+	public static final int START_JBUTTON_BORDER_COLOR_G=191;
+	/**
+	 * 启动按钮边框三原色蓝
+	 */
+	public static final int START_JBUTTON_BORDER_COLOR_B=191;
+	
+	/**
+	 * 启动按钮背景色三原色红
+	 */
+	public static final int START_JBUTTON_BG_COLOR_R=253;
+	/**
+	 * 启动按钮背景色三原色绿
+	 */
+	public static final int START_JBUTTON_BG_COLOR_G=253;
+	/**
+	 * 启动按钮背景色三原色蓝
+	 */
+	public static final int START_JBUTTON_BG_COLOR_B=253;
+	
+	/**
+	 * 启动按钮
+	 */
+	public static final int START_JBUTTON_X=253;
+	/**
+	 * 启动按钮
+	 */
+	public static final int START_JBUTTON_Y=55;
+	/**
+	 * 启动按钮
+	 */
+	public static final int START_JBUTTON_WIDTH=120;
+	/**
+	 * 启动按钮
+	 */
+	public static final int START_JBUTTON_HEIGHT=30;
 }

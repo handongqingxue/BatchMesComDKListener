@@ -242,7 +242,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		saveJb=new JButton(Constant.SAVE_JBUTTON_TEXT);
 		saveJb.setBorder(BorderFactory.createLineBorder(new Color(Constant.SAVE_JBUTTON_BORDER_COLOR_R, Constant.SAVE_JBUTTON_BORDER_COLOR_G, Constant.SAVE_JBUTTON_BORDER_COLOR_B)));
 		saveJb.setBackground(new Color(Constant.SAVE_JBUTTON_BG_COLOR_R, Constant.SAVE_JBUTTON_BG_COLOR_R, Constant.SAVE_JBUTTON_BG_COLOR_R));
-		saveJb.setBounds(253, 130, 120, 30);
+		saveJb.setBounds(Constant.SAVE_JBUTTON_X, Constant.SAVE_JBUTTON_Y, Constant.SAVE_JBUTTON_WIDTH, Constant.SAVE_JBUTTON_HEIGHT);
 		saveJb.addActionListener(this);
 		return saveJb;
 	}
@@ -253,9 +253,9 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JPanel initServerJPanel() {
 		JPanel jp=new JPanel(null);
-		LineBorder lb=new LineBorder(new Color(222,222,222), 1, false);
-		jp.setBorder(BorderFactory.createTitledBorder(lb, "服务", TitledBorder.LEFT, TitledBorder.TOP));
-		jp.setBounds(10, 250, 400, 180);
+		LineBorder lb=new LineBorder(new Color(Constant.SERVER_JPANEL_BORDER_COLOR_R,Constant.SERVER_JPANEL_BORDER_COLOR_G,Constant.SERVER_JPANEL_BORDER_COLOR_B), 1, false);
+		jp.setBorder(BorderFactory.createTitledBorder(lb, Constant.SERVER_JPANEL_BORDER_TITLE, TitledBorder.LEFT, TitledBorder.TOP));
+		jp.setBounds(Constant.SERVER_JPANEL_X, Constant.SERVER_JPANEL_Y, Constant.SERVER_JPANEL_WIDTH, Constant.SERVER_JPANEL_HEIGHT);
 		//jp.setBackground(Color.RED);
 		jp.add(initLightJPanel());
 		jp.add(initStartJButton());
@@ -270,9 +270,9 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JPanel initLightJPanel() {
 		JPanel jp=new JPanel(null);
-		jp.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
+		jp.setBorder(BorderFactory.createLineBorder(new Color(Constant.LIGHT_JPANEL_BORDER_COLOR_R, Constant.LIGHT_JPANEL_BORDER_COLOR_G, Constant.LIGHT_JPANEL_BORDER_COLOR_B)));
 		//jp.setBackground(Color.RED);
-		jp.setBounds(70, 40, 90, 120);
+		jp.setBounds(Constant.LIGHT_JPANEL_X, Constant.LIGHT_JPANEL_Y, Constant.LIGHT_JPANEL_WIDTH, Constant.LIGHT_JPANEL_HEIGHT);
 		
 		jp.add(initStartLightJLabel());
 		jp.add(initStopLightJLabel());
@@ -286,7 +286,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JLabel initStartLightJLabel() {
 		startLightJLabel=new JLabel();
-		startLightJLabel.setBounds(10, 10, 70, 40);
+		startLightJLabel.setBounds(Constant.START_LIGHT_JLABEL_X, Constant.START_LIGHT_JLABEL_Y, Constant.START_LIGHT_JLABEL_WIDTH, Constant.START_LIGHT_JLABEL_HEIGHT);
 		startLightJLabel.setOpaque(true);
 
 		return startLightJLabel;
@@ -298,7 +298,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JLabel initStopLightJLabel() {
 		stopLightJLabel=new JLabel();
-		stopLightJLabel.setBounds(10, 65, 70, 40);
+		stopLightJLabel.setBounds(Constant.STOP_LIGHT_JLABEL_X, Constant.STOP_LIGHT_JLABEL_Y, Constant.STOP_LIGHT_JLABEL_WIDTH, Constant.STOP_LIGHT_JLABEL_HEIGHT);
 		stopLightJLabel.setOpaque(true);
 
 		return stopLightJLabel;
@@ -310,8 +310,8 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private void changeLightJLabelStyle(boolean start) {
 		if(start) {
-			startLightJLabel.setBackground(new Color(165, 42, 42));
-			stopLightJLabel.setBackground(new Color(38, 139, 11));
+			startLightJLabel.setBackground(new Color(Constant.START_LIGHT_JLABEL_START_BG_COLOR_R, Constant.START_LIGHT_JLABEL_START_BG_COLOR_G, Constant.START_LIGHT_JLABEL_START_BG_COLOR_B));
+			stopLightJLabel.setBackground(new Color(Constant.STOP_LIGHT_JLABEL_START_BG_COLOR_R, Constant.STOP_LIGHT_JLABEL_START_BG_COLOR_G, Constant.STOP_LIGHT_JLABEL_START_BG_COLOR_B));
 			
 			startJb.setEnabled(false);
 			stopJb.setEnabled(true);
@@ -325,15 +325,23 @@ public class ListenerTask extends Thread implements ActionListener {
 		}
 	}
 	
+	/**
+	 * 初始化启动按钮
+	 * @return
+	 */
 	private JButton initStartJButton() {
-		startJb=new JButton("启动");
-		startJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
-		startJb.setBackground(new Color(253, 253, 253));
-		startJb.setBounds(253, 55, 120, 30);
+		startJb=new JButton(Constant.START_JBUTTON_TEXT);
+		startJb.setBorder(BorderFactory.createLineBorder(new Color(Constant.START_JBUTTON_BORDER_COLOR_R, Constant.START_JBUTTON_BORDER_COLOR_G, Constant.START_JBUTTON_BORDER_COLOR_B)));
+		startJb.setBackground(new Color(Constant.START_JBUTTON_BG_COLOR_R, Constant.START_JBUTTON_BG_COLOR_G, Constant.START_JBUTTON_BG_COLOR_B));
+		startJb.setBounds(Constant.START_JBUTTON_X, Constant.START_JBUTTON_Y, Constant.START_JBUTTON_WIDTH, Constant.START_JBUTTON_HEIGHT);
 		startJb.addActionListener(this);
 		return startJb;
 	}
 	
+	/**
+	 * 初始化停止按钮
+	 * @return
+	 */
 	private JButton initStopJButton() {
 		stopJb=new JButton("停止");
 		stopJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
@@ -343,6 +351,10 @@ public class ListenerTask extends Thread implements ActionListener {
 		return stopJb;
 	}
 	
+	/**
+	 * 初始化WATCH DOG状态消息标签
+	 * @return
+	 */
 	private JLabel initWatchStateMsgJLabel() {
 		JLabel jl=new JLabel();
 		jl.setText("WATCH DOG自侦测功能运行中 心跳变量正常");
