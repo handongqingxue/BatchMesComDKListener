@@ -16,8 +16,8 @@ public class StartTask {
 	
 	public static void main(String[] args) {
 		//打包exe:https://blog.csdn.net/qq_40298902/article/details/114489753
-		//keepWatchTask=new KeepWatchTask();
-		//keepWatchTask.setActive(true);
+		keepWatchTask=new KeepWatchTask();
+		keepWatchTask.setActive(true);
 		
 		//sendMesBRTask=new SendMesBRTask();
 		//sendMesBRTask.setActive(true);
@@ -25,7 +25,7 @@ public class StartTask {
 		listenerTask=new ListenerTask();
 		listenerTask.initMainJFrame();
 
-		//keepWatchTask.start();
+		keepWatchTask.start();
 		//sendMesBRTask.start();
 		listenerTask.start();
 		//readIniFile();
@@ -41,7 +41,7 @@ public class StartTask {
 			e.printStackTrace();
 		}
 		//resource就是所需要的路径 eg: resource="D:\项目名\src\main\resources\files\****"
-		String iniPath =resourcesPath+"/dbConfig.ini";
+		String iniPath =resourcesPath+"/db.ini";
 		try {
 			Map<String, String> map = IniUtil.readKeys(iniPath);
 			String ipAddressPort = map.get(Constant.IP_ADDRESS_PORT_KEY);

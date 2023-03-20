@@ -45,7 +45,6 @@ public class ListenerTask extends Thread implements ActionListener {
 			System.out.println("sendMesBRTask==="+sendMesBRTask);
 			
 			while (true) {
-				/*
 				boolean isCheckedKWT = keepWatchTask.isChecked();//获得巡检进程的检测标识
 				System.out.println("isCheckedKWT1==="+isCheckedKWT);
 				if(!isCheckedKWT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
@@ -67,6 +66,7 @@ public class ListenerTask extends Thread implements ActionListener {
 				}
 				
 
+				/*
 				boolean isCheckedSMBRT = sendMesBRTask.isChecked();
 				System.out.println("isCheckedSMBRT1==="+isCheckedSMBRT);
 				if(!isCheckedSMBRT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
@@ -379,7 +379,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		try {
 			File resourcesDir = new File(Constant.RESOURCES_DIR);
 			String resourcesPath = resourcesDir.getCanonicalPath();
-			String iniPath =resourcesPath+"/dbConfig.ini";
+			String iniPath =resourcesPath+"/db.ini";
 			Map<String, String> map = IniUtil.readKeys(iniPath);
 			String ipAddressPort = map.get(Constant.IP_ADDRESS_PORT_KEY);
 			String dbConnect = map.get(Constant.DB_CONNECT_KEY);
@@ -397,7 +397,7 @@ public class ListenerTask extends Thread implements ActionListener {
 		try {
 			File resourcesDir = new File(Constant.RESOURCES_DIR);
 			String resourcesPath = resourcesDir.getCanonicalPath();
-			String iniPath =resourcesPath+"/dbConfig.ini";
+			String iniPath =resourcesPath+"/db.ini";
 			
 			String ipAddressPort = ipAddressPortJTF.getText();
 			String dbConnect = dbConnectJTF.getText();
@@ -405,6 +405,7 @@ public class ListenerTask extends Thread implements ActionListener {
 			LinkedHashMap<String,Object> map=new LinkedHashMap();
 			map.put(Constant.IP_ADDRESS_PORT_KEY, ipAddressPort);
 			map.put(Constant.DB_CONNECT_KEY, dbConnect);
+			map.put(Constant.JDBC_URL_KEY, "jdbc:sqlserver://"+ipAddressPort+";DatabaseName="+dbConnect);
 			IniUtil.writeKeys(iniPath, Constant.CONNECT_INFO_SECTION, map);
 			
 			JOptionPane.showMessageDialog(null, "修改成功");

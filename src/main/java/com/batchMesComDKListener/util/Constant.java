@@ -428,9 +428,11 @@ public class Constant {
 	 */
 	public static final int WATCH_STATE_MSG_JLABEL_HEIGHT=30;
 	
-	public static final String RESOURCES_DIR="../BatchMesComDKListener/src/main/resources";
+	//public static final String RESOURCES_DIR="../BatchMesComDKListener/src/main/resources";
+	public static final String RESOURCES_DIR="D:/resource/BatchMesComDK";
 	
 	public static final String IP_ADDRESS_PORT_KEY="IPAddressPort";
 	public static final String DB_CONNECT_KEY="DBConnect";
+	public static final String JDBC_URL_KEY="jdbc.url";
 	public static final String CONNECT_INFO_SECTION="connectInfo";
 }
