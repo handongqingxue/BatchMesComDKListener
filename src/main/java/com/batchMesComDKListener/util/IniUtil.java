@@ -8,7 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class IniUtils {
+//https://blog.csdn.net/qq_62726444/article/details/126246371
+public class IniUtil {
 
     /**
      * 读取ini文件信息
@@ -16,7 +17,7 @@ public class IniUtils {
      * @return 读取ini文件以map返回
      * @throws Exception
      */
-    public static Map<String,String> readIniFile(String urlPath) throws Exception {
+    public static Map<String,String> readKeys(String urlPath) throws Exception {
         InputStream in = new FileInputStream(new File(urlPath));
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         Properties props = new Properties();
@@ -36,7 +37,7 @@ public class IniUtils {
      * @return 成功返回   不成功报错
      * @throws Exception
      */
-    public static String  writeIniFile(String urlPath, String title, LinkedHashMap<String,Object> map) throws  Exception{
+    public static String  writeKeys(String urlPath, String title, LinkedHashMap<String,Object> map) throws  Exception{
         Wini wini = new Wini(new File(urlPath));
         for (Map.Entry<String, Object> next : map.entrySet()) {
             wini.put(title, next.getKey(), next.getValue());

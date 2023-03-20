@@ -3,15 +3,22 @@ package com.batchMesComDKListener.task;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.batchMesComDKListener.util.*;
 
@@ -19,6 +26,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	
 	private KeepWatchTask keepWatchTask;
 	private SendMesBRTask sendMesBRTask;
+	private JTextField ipAddressPortJTF,dbConnectJTF;
 	private JButton saveJb,startJb,stopJb;
 	private JLabel startLightJLabel,stopLightJLabel;
 	private int unCheckCountKWT;
@@ -203,10 +211,10 @@ public class ListenerTask extends Thread implements ActionListener {
 	 */
 	private JTextField initIPAddressPortJTextField() {
 		//JTextField显示不了解决方案:https://www.zzzyk.com/show/a99aeecdee6fb83a.htm
-		JTextField jtf=new JTextField();
-		jtf.setBounds(Constant.IP_ADDRESS_PORT_JTEXTFIELD_X, Constant.IP_ADDRESS_PORT_JTEXTFIELD_Y, Constant.IP_ADDRESS_PORT_JTEXTFIELD_WIDTH, Constant.IP_ADDRESS_PORT_JTEXTFIELD_HEIGHT);
+		ipAddressPortJTF=new JTextField();
+		ipAddressPortJTF.setBounds(Constant.IP_ADDRESS_PORT_JTEXTFIELD_X, Constant.IP_ADDRESS_PORT_JTEXTFIELD_Y, Constant.IP_ADDRESS_PORT_JTEXTFIELD_WIDTH, Constant.IP_ADDRESS_PORT_JTEXTFIELD_HEIGHT);
 		
-		return jtf;
+		return ipAddressPortJTF;
 	}
 	
 	/**
@@ -228,10 +236,10 @@ public class ListenerTask extends Thread implements ActionListener {
 	 * @return
 	 */
 	private JTextField initDBConnectJTextField() {
-		JTextField jtf=new JTextField();
-		jtf.setBounds(Constant.DB_CONNECT_JTEXTFIELD_X, Constant.DB_CONNECT_JTEXTFIELD_Y, Constant.DB_CONNECT_JTEXTFIELD_WIDTH, Constant.DB_CONNECT_JTEXTFIELD_HEIGHT);
+		dbConnectJTF=new JTextField();
+		dbConnectJTF.setBounds(Constant.DB_CONNECT_JTEXTFIELD_X, Constant.DB_CONNECT_JTEXTFIELD_Y, Constant.DB_CONNECT_JTEXTFIELD_WIDTH, Constant.DB_CONNECT_JTEXTFIELD_HEIGHT);
 		
-		return jtf;
+		return dbConnectJTF;
 	}
 	
 	/**
@@ -343,10 +351,10 @@ public class ListenerTask extends Thread implements ActionListener {
 	 * @return
 	 */
 	private JButton initStopJButton() {
-		stopJb=new JButton("停止");
-		stopJb.setBorder(BorderFactory.createLineBorder(new Color(191, 191, 191)));
-		stopJb.setBackground(new Color(253, 253, 253));
-		stopJb.setBounds(253, 110, 120, 30);
+		stopJb=new JButton(Constant.STOP_JBUTTON_TEXT);
+		stopJb.setBorder(BorderFactory.createLineBorder(new Color(Constant.STOP_JBUTTON_BORDER_COLOR_R, Constant.STOP_JBUTTON_BORDER_COLOR_G, Constant.STOP_JBUTTON_BORDER_COLOR_B)));
+		stopJb.setBackground(new Color(Constant.STOP_JBUTTON_BG_COLOR_R, Constant.STOP_JBUTTON_BG_COLOR_G, Constant.STOP_JBUTTON_BG_COLOR_B));
+		stopJb.setBounds(Constant.STOP_JBUTTON_X, Constant.STOP_JBUTTON_Y, Constant.STOP_JBUTTON_WIDTH, Constant.STOP_JBUTTON_HEIGHT);
 		stopJb.addActionListener(this);
 		return stopJb;
 	}
@@ -358,17 +366,65 @@ public class ListenerTask extends Thread implements ActionListener {
 	private JLabel initWatchStateMsgJLabel() {
 		JLabel jl=new JLabel();
 		jl.setText("WATCH DOG自侦测功能运行中 心跳变量正常");
-		jl.setBounds(135, 430, 250, 30);
+		jl.setBounds(Constant.WATCH_STATE_MSG_JLABEL_X, Constant.WATCH_STATE_MSG_JLABEL_Y, Constant.WATCH_STATE_MSG_JLABEL_WIDTH, Constant.WATCH_STATE_MSG_JLABEL_HEIGHT);
 		//jl.setBackground(Color.RED);
 		//jl.setOpaque(true);
 		
+		loadDBConfig();
+		
 		return jl;
+	}
+	
+	private void loadDBConfig() {
+		try {
+			File resourcesDir = new File(Constant.RESOURCES_DIR);
+			String resourcesPath = resourcesDir.getCanonicalPath();
+			String iniPath =resourcesPath+"/dbConfig.ini";
+			Map<String, String> map = IniUtil.readKeys(iniPath);
+			String ipAddressPort = map.get(Constant.IP_ADDRESS_PORT_KEY);
+			String dbConnect = map.get(Constant.DB_CONNECT_KEY);
+			System.out.println("数据库地址:"+ipAddressPort);
+			System.out.println("数据库连接:"+dbConnect);
+			ipAddressPortJTF.setText(ipAddressPort);
+			dbConnectJTF.setText(dbConnect);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void editDBConfig() {
+		try {
+			File resourcesDir = new File(Constant.RESOURCES_DIR);
+			String resourcesPath = resourcesDir.getCanonicalPath();
+			String iniPath =resourcesPath+"/dbConfig.ini";
+			
+			String ipAddressPort = ipAddressPortJTF.getText();
+			String dbConnect = dbConnectJTF.getText();
+			
+			LinkedHashMap<String,Object> map=new LinkedHashMap();
+			map.put(Constant.IP_ADDRESS_PORT_KEY, ipAddressPort);
+			map.put(Constant.DB_CONNECT_KEY, dbConnect);
+			IniUtil.writeKeys(iniPath, Constant.CONNECT_INFO_SECTION, map);
+			
+			JOptionPane.showMessageDialog(null, "修改成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		JButton source = (JButton)e.getSource();
+		if(source==saveJb) {
+			if(checkIPAddressPort()) {
+				if(checkDBConnect()) {
+					editDBConfig();
+				}
+			}
+		}
 		if(source==startJb) {
 			System.out.println("aaaaaaaaaaaaaa");
 			//startDKJavaRunner();
@@ -381,6 +437,26 @@ public class ListenerTask extends Thread implements ActionListener {
 			//stopDKJavaBRRunner();
 			changeLightJLabelStyle(false);
 		}
+	}
+	
+	private boolean checkIPAddressPort() {
+		String ipAddressPort = ipAddressPortJTF.getText();
+		if(StringUtils.isEmpty(ipAddressPort)) {
+			JOptionPane.showMessageDialog(null, "请输入"+Constant.IP_ADDRESS_PORT_JLABEL_TEXT);
+			return false;
+		}
+		else
+			return true;
+	}
+	
+	private boolean checkDBConnect() {
+		String dbConnect = dbConnectJTF.getText();
+		if(StringUtils.isEmpty(dbConnect)) {
+			JOptionPane.showMessageDialog(null, "请输入"+Constant.DB_CONNECT_JLABEL_TEXT);
+			return false;
+		}
+		else
+			return true;
 	}
 
 }

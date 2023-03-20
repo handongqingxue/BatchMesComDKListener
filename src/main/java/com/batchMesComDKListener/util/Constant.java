@@ -347,19 +347,90 @@ public class Constant {
 	public static final int START_JBUTTON_BG_COLOR_B=253;
 	
 	/**
-	 * 启动按钮
+	 * 启动按钮x坐标
 	 */
 	public static final int START_JBUTTON_X=253;
 	/**
-	 * 启动按钮
+	 * 启动按钮y坐标
 	 */
 	public static final int START_JBUTTON_Y=55;
 	/**
-	 * 启动按钮
+	 * 启动按钮宽度
 	 */
 	public static final int START_JBUTTON_WIDTH=120;
 	/**
-	 * 启动按钮
+	 * 启动按钮高度
 	 */
 	public static final int START_JBUTTON_HEIGHT=30;
+	
+	/**
+	 * 停止按钮文字
+	 */
+	public static final String STOP_JBUTTON_TEXT="停止";
+	
+	/**
+	 * 停止按钮边框三原色红
+	 */
+	public static final int STOP_JBUTTON_BORDER_COLOR_R=191;
+	/**
+	 * 停止按钮边框三原色绿
+	 */
+	public static final int STOP_JBUTTON_BORDER_COLOR_G=191;
+	/**
+	 * 停止按钮边框三原色蓝
+	 */
+	public static final int STOP_JBUTTON_BORDER_COLOR_B=191;
+
+	/**
+	 * 停止按钮背景色三原色红
+	 */
+	public static final int STOP_JBUTTON_BG_COLOR_R=253;
+	/**
+	 * 停止按钮背景色三原色绿
+	 */
+	public static final int STOP_JBUTTON_BG_COLOR_G=253;
+	/**
+	 * 停止按钮背景色三原色蓝
+	 */
+	public static final int STOP_JBUTTON_BG_COLOR_B=253;
+	
+	/**
+	 * 停止按钮x坐标
+	 */
+	public static final int STOP_JBUTTON_X=253;
+	/**
+	 * 停止按钮y坐标
+	 */
+	public static final int STOP_JBUTTON_Y=110;
+	/**
+	 * 停止按钮宽度
+	 */
+	public static final int STOP_JBUTTON_WIDTH=120;
+	/**
+	 * 停止按钮高度
+	 */
+	public static final int STOP_JBUTTON_HEIGHT=30;
+
+	/**
+	 * WATCH DOG状态消息标签x坐标
+	 */
+	public static final int WATCH_STATE_MSG_JLABEL_X=135;
+	/**
+	 * WATCH DOG状态消息标签y坐标
+	 */
+	public static final int WATCH_STATE_MSG_JLABEL_Y=430;
+	/**
+	 * WATCH DOG状态消息标签宽度
+	 */
+	public static final int WATCH_STATE_MSG_JLABEL_WIDTH=250;
+	/**
+	 * WATCH DOG状态消息标签高度
+	 */
+	public static final int WATCH_STATE_MSG_JLABEL_HEIGHT=30;
+	
+	public static final String RESOURCES_DIR="../BatchMesComDKListener/src/main/resources";
+	
+	public static final String IP_ADDRESS_PORT_KEY="IPAddressPort";
+	public static final String DB_CONNECT_KEY="DBConnect";
+	public static final String CONNECT_INFO_SECTION="connectInfo";
 }
