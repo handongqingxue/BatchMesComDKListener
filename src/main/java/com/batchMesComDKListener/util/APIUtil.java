@@ -67,6 +67,24 @@ public class APIUtil {
 	 * 巡回工单状态
 	 * @return
 	 */
+	public static JSONObject keepWatchOnWorkOrder() {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+	        resultJO = doHttp("keepWatchOnWorkOrder",null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+
+	/**
+	 * 巡回工单状态(测试用)
+	 * @return
+	 */
 	public static JSONObject keepWatchOnWorkOrderTest() {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;

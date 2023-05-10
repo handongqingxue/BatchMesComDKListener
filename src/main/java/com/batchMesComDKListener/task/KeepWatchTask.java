@@ -35,7 +35,8 @@ public class KeepWatchTask extends Thread {
 					break;
 				checked=false;
 				Thread.sleep(3000);
-				APIUtil.keepWatchOnWorkOrderTest();
+				APIUtil.keepWatchOnWorkOrder();
+				//APIUtil.keepWatchOnWorkOrderTest();
 				System.out.println("Ñ²»Ø¹¤µ¥×´Ì¬........");
 			}
 		} catch (Exception e) {
