@@ -45,9 +45,9 @@ public class KeepWatchTask extends Thread {
 				JSONObject kwowoJO = APIUtil.keepWatchOnWorkOrder();
 				//APIUtil.keepWatchOnWorkOrderTest();
 				System.out.println("Ñ²»Ø¹¤µ¥×´Ì¬........"+kwowoJO.getBoolean("success"));
-				if(!kwowoJO.getBoolean("success")) {
-					System.out.println("ooooooooooooooo");
-					runBatFile("D:/apache-tomcat-8.5.57/bin/startup.bat");
+				if(!kwowoJO.getBoolean("success")) {//https://blog.csdn.net/qq_41548233/article/details/116566144
+					runBatFile("cmd /c D:/tomcat8.5.57/bin/shutdown.bat");
+					runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 				}
 			}
 		} catch (Exception e) {
@@ -81,6 +81,6 @@ public class KeepWatchTask extends Thread {
 	
 	public static void main(String[] args) {
 		KeepWatchTask k=new KeepWatchTask();
-		k.runBatFile("D:/apache-tomcat-8.5.57/bin/startup.bat");
+		k.runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 	}
 }
