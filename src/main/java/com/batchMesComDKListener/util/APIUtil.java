@@ -20,6 +20,7 @@ public class APIUtil {
 
 	public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
 	//public static final String SERVICE_URL="http://192.168.1.108:8080/BatchMesComDK/batch/";
+	public static boolean reading;
 
 	//https://www.cnblogs.com/aeolian/p/7746158.html
 	//https://www.cnblogs.com/bobc/p/8809761.html
@@ -42,6 +43,8 @@ public class APIUtil {
 			String strRead = null; 
 			URL url = new URL(SERVICE_URL+method);
 			HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+			//connection.setConnectTimeout(15000);
+			connection.setReadTimeout(15000);//Read timed out
 			connection.setRequestMethod("POST");//«Î«Ûpost∑Ω Ω
 			connection.setDoInput(true); 
 			connection.setDoOutput(true); 
@@ -71,6 +74,7 @@ public class APIUtil {
 			e.printStackTrace();
 			resultJO = new JSONObject();
 			resultJO.put("success", "false");
+			resultJO.put("message", e.getMessage());//Read timed out
 		}
 		return resultJO;
 	}
@@ -82,6 +86,8 @@ public class APIUtil {
 	public static JSONObject keepWatchOnWorkOrder() {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
+		reading=true;
+		System.out.println("reading2==="+reading);
 		try {
 	        resultJO = doHttp("keepWatchOnWorkOrder",null);
 		} catch (Exception e) {
@@ -89,9 +95,12 @@ public class APIUtil {
 			e.printStackTrace();
 			if("Connection refused: connect".equals(e.getMessage())) {
 				resultJO.put("success", "false");
+				resultJO.put("message", e.getMessage());
 			}
 		}
 		finally {
+			reading=false;
+			System.out.println("resultJO==="+resultJO.toString());
 			return resultJO;
 		}
 	}

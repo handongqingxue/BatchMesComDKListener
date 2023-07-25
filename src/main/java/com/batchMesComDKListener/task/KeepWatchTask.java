@@ -42,12 +42,24 @@ public class KeepWatchTask extends Thread {
 					break;
 				checked=false;
 				Thread.sleep(3000);
-				JSONObject kwowoJO = APIUtil.keepWatchOnWorkOrder();
-				//APIUtil.keepWatchOnWorkOrderTest();
-				System.out.println("巡回工单状态........"+kwowoJO.getBoolean("success"));
-				if(!kwowoJO.getBoolean("success")) {//https://blog.csdn.net/qq_41548233/article/details/116566144
-					runBatFile("cmd /c D:/tomcat8.5.57/bin/shutdown.bat");
-					runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
+				System.out.println("reading1==="+APIUtil.reading);
+				if(!APIUtil.reading) {
+					JSONObject kwowoJO = APIUtil.keepWatchOnWorkOrder();
+					System.out.println("reading3==="+APIUtil.reading);
+					//APIUtil.keepWatchOnWorkOrderTest();
+					System.out.println("巡回工单状态........"+kwowoJO.getBoolean("success"));
+					if(!kwowoJO.getBoolean("success")) {//https://blog.csdn.net/qq_41548233/article/details/116566144
+						String message = kwowoJO.getString("message");
+						if("Read timed out".equals(message)) {//读取时间超时，说明Tomcat端已经宕机了，就得关闭Tomcat进程重启服务
+							runBatFile("cmd /c taskkill /f /im java.exe");
+							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
+						}
+						else if("Connection refused: connect".equals(message)) {//拒绝连接时，说明Tomcat没开启，就得开启
+							runBatFile("cmd /c D:/tomcat8.5.57/bin/shutdown.bat");
+							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
+						}
+						//其他情况是batch服务未开启，Tomcat端接口返回message=no，这里不做任何处理
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -57,6 +69,7 @@ public class KeepWatchTask extends Thread {
 	}
 	
 	public void runBatFile(String fileUrl) {
+		System.out.println("fileUrl==="+fileUrl);
 		StringBuilder sb = new StringBuilder();
 	    try {
 	        Process child = Runtime.getRuntime().exec(fileUrl);
