@@ -50,11 +50,13 @@ public class KeepWatchTask extends Thread {
 					System.out.println("巡回工单状态........"+kwowoJO.getBoolean("success"));
 					if(!kwowoJO.getBoolean("success")) {//https://blog.csdn.net/qq_41548233/article/details/116566144
 						String message = kwowoJO.getString("message");
+						System.out.println("message==="+message);
 						if("Read timed out".equals(message)) {//读取时间超时，说明Tomcat端已经宕机了，就得关闭Tomcat进程重启服务
 							runBatFile("cmd /c taskkill /f /im java.exe");
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 						}
-						else if("Connection refused: connect".equals(message)) {//拒绝连接时，说明Tomcat没开启，就得开启
+						else if("Connection refused: connect".equals(message)||
+								"Can't pass in null Dispatch object".equals(message)) {//拒绝连接时，说明Tomcat没开启，就得开启
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/shutdown.bat");
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 						}
