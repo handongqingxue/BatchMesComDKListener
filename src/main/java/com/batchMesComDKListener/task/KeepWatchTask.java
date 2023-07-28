@@ -55,12 +55,12 @@ public class KeepWatchTask extends Thread {
 							runBatFile("cmd /c taskkill /f /im java.exe");
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 						}
-						else if("Connection refused: connect".equals(message)||
-								"Can't pass in null Dispatch object".equals(message)) {//拒绝连接时，说明Tomcat没开启，就得开启
+						else if("Connection refused: connect".equals(message)||//拒绝连接时，说明Tomcat没开启，就得开启
+								"Can't pass in null Dispatch object".equals(message)||//没有batch环境就会报这个异常
+								"Can't map name to dispid: GetItem".equals(message)) {//batch服务没开启就会报这个异常，要重启下tomcat，重新检测batch服务是否开启
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/shutdown.bat");
 							runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 						}
-						//其他情况是batch服务未开启，Tomcat端接口返回message=no，这里不做任何处理
 					}
 				}
 			}

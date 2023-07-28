@@ -57,8 +57,8 @@ public class ListenerTask extends Thread implements ActionListener {
 				}
 				System.out.println("unCheckCountKWT==="+unCheckCountKWT);
 				
-				if(unCheckCountKWT>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
-					if(!APIUtil.reading) {
+				if(unCheckCountKWT>3) {//未检测次数累计三次以上
+					if(!APIUtil.reading) {//不一定是巡检进程停止了，可能是正在读取接口内容导致未响应。若读取状态是false，说明中间件真的停止运行了，需要再次启动中间件
 						System.out.println("复活.....");
 						stopDKJavaRunner();//先停止中间件进程
 						startDKJavaRunner();//再开启中间件进程，以免占用内存资源
