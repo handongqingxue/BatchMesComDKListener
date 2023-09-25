@@ -430,6 +430,10 @@ public class Constant {
 	
 	//public static final String RESOURCES_DIR="../BatchMesComDKListener/src/main/resources";
 	public static final String RESOURCES_DIR="D:/resource/BatchMesComDK";
+	//public static final String TOMCAT_BIN_DIR="D:/tomcat8.5.57/bin/";
+	public static final String TOMCAT_BIN_DIR="E:/tomcat8.5.57/bin/";
+	public static final String TOMCAT_SHUTDOWN_DIR=TOMCAT_BIN_DIR+"shutdown.bat";
+	public static final String TOMCAT_STARTUP_DIR=TOMCAT_BIN_DIR+"startup.bat";
 	
 	public static final String IP_ADDRESS_PORT_KEY="IPAddressPort";
 	public static final String DB_CONNECT_KEY="DBConnect";
