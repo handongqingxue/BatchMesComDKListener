@@ -18,8 +18,8 @@ import org.json.JSONObject;
 
 public class APIUtil {
 
-	public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
-	//public static final String SERVICE_URL="http://192.168.1.108:8080/BatchMesComDK/batch/";
+	//public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
+	public static final String SERVICE_URL="http://192.168.1.106:8080/BatchMesComDK/batch/";
 	/**
 	 * 是否正在读取接口数据
 	 */
@@ -95,8 +95,9 @@ public class APIUtil {
 	        resultJO = doHttp("keepWatchOnWorkOrder",null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			String message = e.getMessage();
 			e.printStackTrace();
-			if("Connection refused: connect".equals(e.getMessage())) {
+			if("Connection refused: connect".equals(message)) {
 				resultJO.put("success", "false");
 				resultJO.put("message", e.getMessage());
 			}

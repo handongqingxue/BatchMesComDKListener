@@ -53,7 +53,8 @@ public class KeepWatchTask extends Thread {
 						//The CATALINA_HOME environment variable is not defined correctly解决方案:配置环境变量,新增CATALINA_HOME:E:\tomcat8.5.57
 						String message = kwowoJO.getString("message");
 						System.out.println("message==="+message);
-						if("Read timed out".equals(message)) {//读取时间超时，说明Tomcat端已经宕机了，就得关闭Tomcat进程重启服务
+						if("Read timed out".equals(message)||
+							message.contains("/BatchMesComDK/batch/keepWatchOnWorkOrder")) {//读取时间超时，说明Tomcat端已经宕机了，就得关闭Tomcat进程重启服务
 							runBatFile("cmd /c taskkill /f /im java.exe");
 							runBatFile("cmd /c "+Constant.TOMCAT_STARTUP_DIR);
 						}
