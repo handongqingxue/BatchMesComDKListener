@@ -18,8 +18,8 @@ import org.json.JSONObject;
 
 public class APIUtil {
 
-	//public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
-	public static final String SERVICE_URL="http://192.168.1.106:8080/BatchMesComDK/batch/";
+	public static final String SERVICE_URL="http://localhost:8080/BatchMesComDK/batch/";
+	//public static final String SERVICE_URL="http://192.168.1.106:8080/BatchMesComDK/batch/";
 	/**
 	 * 是否正在读取接口数据
 	 */
@@ -136,6 +136,20 @@ public class APIUtil {
 		JSONObject resultJO = null;
 		try {
 	        resultJO = doHttp("getSendToMesBRData",null);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			return resultJO;
+		}
+	}
+	
+	public static JSONObject restartWatchDog() {
+		// TODO Auto-generated method stub
+		JSONObject resultJO = null;
+		try {
+	        resultJO = doHttp("restartWatchDog",null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
