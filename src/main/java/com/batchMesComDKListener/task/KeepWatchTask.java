@@ -16,7 +16,6 @@ public class KeepWatchTask extends Thread {
 	 */
 	private boolean active;
 	private boolean checked;
-	private long restartDogTime=0;
 
 	public boolean isActive() {
 		return active;
@@ -42,11 +41,6 @@ public class KeepWatchTask extends Thread {
 				if(!active)//不运行了，则跳出巡回检测
 					break;
 				checked=false;
-				
-				restartDogTime+=3;
-				if(restartDogTime>200) {
-					APIUtil.restartWatchDog();
-				}
 				
 				Thread.sleep(3000);
 				System.out.println("reading1==="+APIUtil.reading);

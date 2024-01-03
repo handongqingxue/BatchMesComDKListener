@@ -2,6 +2,7 @@ package com.batchMesComDKListener.task;
 
 import com.batchMesComDKListener.util.Constant;
 import com.batchMesComDKListener.util.IniUtil;
+import com.batchMesComDKListener.util.WatchDogManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,6 +17,8 @@ public class StartTask {
 	
 	public static void main(String[] args) {
 		//打包exe:https://blog.csdn.net/qq_40298902/article/details/114489753
+		WatchDogManager.restart();//设置好每周的重启任务
+		
 		keepWatchTask=new KeepWatchTask();
 		keepWatchTask.setActive(true);
 		
