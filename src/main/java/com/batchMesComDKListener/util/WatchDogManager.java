@@ -7,7 +7,8 @@ import java.util.Timer;
 public class WatchDogManager {
 
 	//延迟时间(一周)
-	private static final int DELAY_DAY =7;
+	//private static final int DELAY_DAY =7;
+	private static final int DELAY_DAY =1;
 	
 	public static void restart() {
 		Calendar calendar=Calendar.getInstance();
