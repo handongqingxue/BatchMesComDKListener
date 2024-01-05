@@ -33,6 +33,33 @@ public class DateUtil {
         calendar.set(Calendar.DAY_OF_YEAR, dayOfYear + days);
         return calendar.getTime();
     }
+    
+    public static Date minuteOper(String formatStr,int minutes) {
+
+    	String dateStr = formatStr.split(" ")[0];
+        int year = new Integer(dateStr.split("-")[0]);
+        int month = new Integer(dateStr.split("-")[1]);
+        int day = new Integer(dateStr.split("-")[2]);
+
+    	String timeStr = formatStr.split(" ")[1];
+        int hour = new Integer(timeStr.split(":")[0]);
+        int minute = new Integer(timeStr.split(":")[1]);
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month-1);
+        calendar.set(Calendar.DAY_OF_MONTH,day);
+        
+        calendar.set(Calendar.HOUR_OF_DAY,hour);
+        calendar.set(Calendar.MINUTE,minute);
+        
+        int minuteOfHour = calendar.get(Calendar.MINUTE);
+        
+        calendar.set(Calendar.MINUTE, minuteOfHour + minutes);
+        Date date = calendar.getTime();
+        //System.out.println(date);
+        return date;
+    }
 
     /**
      * 取得当前日期是 本年的第几周

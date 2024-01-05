@@ -144,18 +144,4 @@ public class APIUtil {
 			return resultJO;
 		}
 	}
-	
-	public static JSONObject restartWatchDog() {
-		// TODO Auto-generated method stub
-		JSONObject resultJO = null;
-		try {
-	        resultJO = doHttp("restartWatchDog",null);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		finally {
-			return resultJO;
-		}
-	}
 }
