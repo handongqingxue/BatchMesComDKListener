@@ -1,9 +1,8 @@
 package com.batchMesComDKListener.task;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
 import org.json.JSONObject;
 
@@ -58,12 +57,14 @@ public class KeepWatchTask extends Thread {
 							message.contains("/BatchMesComDK/batch/keepWatchOnWorkOrder")) {//读取时间超时，说明Tomcat端已经宕机了，就得关闭Tomcat进程重启服务
 							runBatFile("cmd /c taskkill /f /im java.exe");
 							runBatFile("cmd /c "+Constant.TOMCAT_STARTUP_DIR);
+							LogUtil.writeInLog(message);
 						}
 						else if("Connection refused: connect".equals(message)||//拒绝连接时，说明Tomcat没开启，就得开启
 								"Can't pass in null Dispatch object".equals(message)||//没有batch环境就会报这个异常
 								"Can't map name to dispid: GetItem".equals(message)) {//batch服务没开启就会报这个异常，要重启下tomcat，重新检测batch服务是否开启
 							runBatFile("cmd /c "+Constant.TOMCAT_SHUTDOWN_DIR);
 							runBatFile("cmd /c "+Constant.TOMCAT_STARTUP_DIR);
+							LogUtil.writeInLog(message);
 						}
 					}
 				}
@@ -96,10 +97,5 @@ public class KeepWatchTask extends Thread {
 	    } catch (IOException e) {
 	    	System.out.println(e.getMessage());
 	    }
-	}
-	
-	public static void main(String[] args) {
-		KeepWatchTask k=new KeepWatchTask();
-		k.runBatFile("cmd /c D:/tomcat8.5.57/bin/startup.bat");
 	}
 }

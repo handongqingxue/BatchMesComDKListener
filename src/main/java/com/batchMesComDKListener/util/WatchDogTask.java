@@ -11,12 +11,14 @@ public class WatchDogTask extends TimerTask {
 		
 		runBatFile("cmd /c c:/runner.exe");//自杀前先重启
 		//runBatFile("cmd /c D:/BatchMesComDKListener/runner.exe");//自杀前先重启
+		LogUtil.writeInLog("start next runner.exe");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		LogUtil.writeInLog("exit pre runner.exe");
 		System.exit(0);
 	}
 	

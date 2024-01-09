@@ -160,6 +160,10 @@ public class ListenerTask extends Thread implements ActionListener {
 		showMainJFrame(false);
 	}
 	
+	/**
+	 * 是否显示主窗口
+	 * @param show
+	 */
 	public void showMainJFrame(boolean show) {
 		mainJFrame.setVisible(show);
 	}

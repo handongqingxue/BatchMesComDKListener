@@ -38,6 +38,9 @@ public class StartTask {
 		initSystemTray();
 	}
 	
+	/**
+	 * 初始化系统托盘
+	 */
 	private static void initSystemTray() {
 		//https://blog.csdn.net/iteye_9188/article/details/81719048
 		try {
@@ -47,13 +50,13 @@ public class StartTask {
 				// 创建弹出菜单
 				PopupMenu popup = new PopupMenu();
 				
-				final MenuItem openItem = new MenuItem("打开");
+				final MenuItem openItem = new MenuItem(Constant.TRAY_OPEN_MENU_TEXT);
 				popup.add(openItem);
 				
-				final MenuItem closeItem = new MenuItem("关闭");
+				final MenuItem closeItem = new MenuItem(Constant.TRAY_CLOSE_MENU_TEXT);
 				popup.add(closeItem);
 				
-				final MenuItem exitItem = new MenuItem("退出");
+				final MenuItem exitItem = new MenuItem(Constant.TRAY_EXIT_MENU_TEXT);
 				popup.add(exitItem);
 				
 				ActionListener listener = new ActionListener() {
@@ -75,9 +78,9 @@ public class StartTask {
 				exitItem.addActionListener(listener);
 	
 				Image image = Toolkit.getDefaultToolkit().getImage(StartTask.class.getClassLoader().getResource("watchDog.png"));//载入图片
-				TrayIcon trayIcon = new TrayIcon(image, "看门狗程序", popup);// 创建trayIcon
+				TrayIcon trayIcon = new TrayIcon(image, Constant.TRAY_ICON_TITLE, popup);// 创建trayIcon
 				trayIcon.addActionListener(listener);
-					tray.add(trayIcon);
+				tray.add(trayIcon);
 			}
 		} catch (AWTException e) {
 			e.printStackTrace();

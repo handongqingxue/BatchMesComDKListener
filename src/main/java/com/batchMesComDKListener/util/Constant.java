@@ -3,6 +3,23 @@ package com.batchMesComDKListener.util;
 public class Constant {
 
 	/**
+	 * 系统托盘标题
+	 */
+	public static final String TRAY_ICON_TITLE="看门狗程序";
+	/**
+	 * 打开菜单文字
+	 */
+	public static final String TRAY_OPEN_MENU_TEXT="打开";
+	/**
+	 * 关闭菜单文字
+	 */
+	public static final String TRAY_CLOSE_MENU_TEXT="关闭";
+	/**
+	 * 退出菜单文字
+	 */
+	public static final String TRAY_EXIT_MENU_TEXT="退出";
+	
+	/**
 	 * 主窗口标题
 	 */
 	public static final String MAIN_JFRAME_TITLE="Batch系统通讯服务管理";
@@ -428,10 +445,10 @@ public class Constant {
 	 */
 	public static final int WATCH_STATE_MSG_JLABEL_HEIGHT=30;
 	
-	//public static final String RESOURCES_DIR="../BatchMesComDKListener/src/main/resources";
+	//public static final String RESOURCES_DIR="C:/resource/BatchMesComDK";
 	public static final String RESOURCES_DIR="D:/resource/BatchMesComDK";
-	public static final String TOMCAT_BIN_DIR="C:/tomcat8.5.57/bin/";
-	//public static final String TOMCAT_BIN_DIR="D:/tomcat8.5.57/bin/";
+	//public static final String TOMCAT_BIN_DIR="C:/tomcat8.5.57/bin/";
+	public static final String TOMCAT_BIN_DIR="D:/tomcat8.5.57/bin/";
 	//public static final String TOMCAT_BIN_DIR="E:/tomcat8.5.57/bin/";
 	public static final String TOMCAT_SHUTDOWN_DIR=TOMCAT_BIN_DIR+"shutdown.bat";
 	public static final String TOMCAT_STARTUP_DIR=TOMCAT_BIN_DIR+"startup.bat";
