@@ -26,6 +26,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	
 	private KeepWatchTask keepWatchTask;
 	private SendMesBRTask sendMesBRTask;
+	private JFrame mainJFrame;
 	private JTextField ipAddressPortJTF,dbConnectJTF;
 	private JButton saveJb,startJb,stopJb;
 	private JLabel startLightJLabel,stopLightJLabel;
@@ -142,9 +143,9 @@ public class ListenerTask extends Thread implements ActionListener {
 	public void initMainJFrame() {
 		//https://mbd.baidu.com/ug_share/mbox/4a83aa9e65/share?product=smartapp&tk=06559b750ffdd64b94081e8e3c1fc3d6&share_url=https%3A%2F%2Fsa93g4.smartapps.baidu.com%2Fpages%2Fsquestion%2Fsquestion%3Fqid%3D562121822%26rid%3D1410602677%26_swebfr%3D1%26_swebFromHost%3Dbaiduboxapp&domain=mbd.baidu.com
 		System.out.println("11111keepWatchTask==="+keepWatchTask);
-		JFrame jf=new JFrame(Constant.MAIN_JFRAME_TITLE);
-		jf.setBounds(Constant.MAIN_JFRAME_X, Constant.MAIN_JFRAME_Y, Constant.MAIN_JFRAME_WIDTH, Constant.MAIN_JFRAME_HEIGHT);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainJFrame=new JFrame(Constant.MAIN_JFRAME_TITLE);
+		mainJFrame.setBounds(Constant.MAIN_JFRAME_X, Constant.MAIN_JFRAME_Y, Constant.MAIN_JFRAME_WIDTH, Constant.MAIN_JFRAME_HEIGHT);
+		mainJFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		/*
 		JPanel jp=new JPanel(null);
@@ -153,10 +154,14 @@ public class ListenerTask extends Thread implements ActionListener {
 		jp.setBackground(new Color(240, 240, 240));
 		jf.add(jp);
 		*/
-		jf.add(initMainJPanel());
+		mainJFrame.add(initMainJPanel());
 		
 		//jf.show();
-		jf.setVisible(true);//一切都加载完之后才显示主窗口
+		showMainJFrame(false);
+	}
+	
+	public void showMainJFrame(boolean show) {
+		mainJFrame.setVisible(show);
 	}
 	
 	/**
