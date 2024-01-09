@@ -6,8 +6,7 @@ import com.batchMesComDKListener.util.WatchDogManager;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -18,26 +17,78 @@ public class StartTask {
 	static ListenerTask listenerTask;
 	
 	public static void main(String[] args) {
-		//打包exe:https://blog.csdn.net/qq_40298902/article/details/114489753
-		WatchDogManager.restart();//设置好每周的重启任务
-		
-		keepWatchTask=new KeepWatchTask();
-		keepWatchTask.setActive(true);
-		
-		//sendMesBRTask=new SendMesBRTask();
-		//sendMesBRTask.setActive(true);
-		
-		listenerTask=new ListenerTask();
-		listenerTask.initMainJFrame();
+		boolean isRunning = checkIfRunning();
+        if(isRunning) {//若看门狗已运行，就没必要再次运行了，直接关闭
+        	System.exit(0);
+        }
+        else {
+        	//打包exe:https://blog.csdn.net/qq_40298902/article/details/114489753
+    		WatchDogManager.restart();//设置好每周的重启任务
+    		
+    		keepWatchTask=new KeepWatchTask();
+    		keepWatchTask.setActive(true);
+    		
+    		//sendMesBRTask=new SendMesBRTask();
+    		//sendMesBRTask.setActive(true);
+    		
+    		listenerTask=new ListenerTask();
+    		listenerTask.initMainJFrame();
 
-		keepWatchTask.start();
-		//sendMesBRTask.start();
-		listenerTask.start();
-		//readIniFile();
-		
-		initSystemTray();
+    		keepWatchTask.start();
+    		//sendMesBRTask.start();
+    		listenerTask.start();
+    		//readIniFile();
+    		
+    		initSystemTray();
+        }
 	}
 	
+	/**
+	 * 验证看门狗是否在运行
+	 * @return
+	 */
+	private static boolean checkIfRunning() {
+		// TODO Auto-generated method stub
+		//https://blog.csdn.net/weixin_39709134/article/details/131857449
+        boolean isRunning = false;
+        try {
+			String exePath = "runner.exe";//指定要查询的.exe文件名
+			
+			ProcessBuilder processBuilder = new ProcessBuilder("tasklist");
+			Process process = processBuilder.start();
+			
+			InputStream inputStream = process.getInputStream();
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+			    for (String line; (line = reader.readLine()) != null; ) {
+		            //System.out.println("line=="+line);
+			        if (line.contains(exePath)) {
+			            isRunning = true;
+			            break;
+			        }
+			    }
+			    
+			    if(isRunning) {
+			    	System.out.println(".exe程序正在运行！");
+			    }
+			    else {
+			        System.out.println(".exe程序未在运行中。");
+			    }
+			} catch (Exception e) {
+			    e.printStackTrace();
+			} 
+			finally {
+				inputStream.close();
+			    process.destroy();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        finally {
+        	return isRunning;
+		}
+	}
+
 	/**
 	 * 初始化系统托盘
 	 */
