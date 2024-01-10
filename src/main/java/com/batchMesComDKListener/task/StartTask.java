@@ -18,7 +18,7 @@ public class StartTask {
 	
 	public static void main(String[] args) {
 		boolean isRunning = checkIfRunning();
-        if(isRunning) {//若看门狗已运行，就没必要再次运行了，直接关闭
+        if(isRunning) {//若看门狗之前已运行，这次就没必要再次运行了，直接关闭
         	System.exit(0);
         }
         else {
@@ -50,7 +50,8 @@ public class StartTask {
 	private static boolean checkIfRunning() {
 		// TODO Auto-generated method stub
 		//https://blog.csdn.net/weixin_39709134/article/details/131857449
-        boolean isRunning = false;
+		boolean isRunning=false;
+        int runnerExeCount=0;
         try {
 			String exePath = "runner.exe";//指定要查询的.exe文件名
 			
@@ -62,16 +63,18 @@ public class StartTask {
 			    for (String line; (line = reader.readLine()) != null; ) {
 		            //System.out.println("line=="+line);
 			        if (line.contains(exePath)) {
-			            isRunning = true;
-			            break;
+			            runnerExeCount++;
 			        }
 			    }
-			    
-			    if(isRunning) {
-			    	System.out.println(".exe程序正在运行！");
+
+			    //看门狗打开时，进程列表里肯定已经存在runner.exe进程，得根据数量判断是否已运行
+			    if(runnerExeCount>1) {//判断进程列表里runner.exe名称的数量，若大于1，说明之前打开过，这次打开就是重复运行。
+			    	System.out.println("看门狗程序重复运行了！");
+			    	isRunning=true;
 			    }
 			    else {
-			        System.out.println(".exe程序未在运行中。");
+			        System.out.println("看门狗程序未重复运行。");
+			    	isRunning=false;
 			    }
 			} catch (Exception e) {
 			    e.printStackTrace();

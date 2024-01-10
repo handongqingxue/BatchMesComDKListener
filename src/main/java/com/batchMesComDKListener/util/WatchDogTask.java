@@ -9,8 +9,8 @@ public class WatchDogTask extends TimerTask {
 	public void run() {
 		// TODO Auto-generated method stub
 		
-		runBatFile("cmd /c c:/runner.exe");//自杀前先重启
-		//runBatFile("cmd /c D:/BatchMesComDKListener/runner.exe");//自杀前先重启
+		//runBatFile("cmd /c c:/runner.exe");//自杀前先重启
+		runBatFile("cmd /c D:/BatchMesComDKListener/runner.exe");//自杀前先重启
 		LogUtil.writeInLog("start next runner.exe");
 		try {
 			Thread.sleep(3000);
