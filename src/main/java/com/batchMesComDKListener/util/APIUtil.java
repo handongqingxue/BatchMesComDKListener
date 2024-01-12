@@ -128,14 +128,14 @@ public class APIUtil {
 	}
 
 	/**
-	 * 巡检已完成的工单状态
+	 * 巡检工单是否推送批记录给mes了
 	 * @return
 	 */
-	public static JSONObject keepWatchOnWOFinish() {
+	public static JSONObject keepWatchOnWOPushBrToMes() {
 		// TODO Auto-generated method stub
 		JSONObject resultJO = null;
 		try {
-	        resultJO = doHttp("getSendToMesBRData",null);
+	        resultJO = doHttp("checkIfSendBRToMes",null);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

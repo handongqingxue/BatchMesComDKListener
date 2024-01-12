@@ -32,6 +32,7 @@ public class ListenerTask extends Thread implements ActionListener {
 	private JLabel startLightJLabel,stopLightJLabel;
 	private int unCheckCountKWT;
 	private int unCheckCountSMBRT;
+	private int timeSMBRT;
 	
 	@Override
 	public void run() {
@@ -69,27 +70,29 @@ public class ListenerTask extends Thread implements ActionListener {
 				}
 				
 
-				/*
-				boolean isCheckedSMBRT = sendMesBRTask.isChecked();
-				System.out.println("isCheckedSMBRT1==="+isCheckedSMBRT);
-				if(!isCheckedSMBRT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
-					sendMesBRTask.setChecked(true);
-					System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
-					unCheckCountSMBRT=0;//未检测次数清零
+				if(timeSMBRT>20) {
+					timeSMBRT=0;
+					boolean isCheckedSMBRT = sendMesBRTask.isChecked();
+					System.out.println("isCheckedSMBRT1==="+isCheckedSMBRT);
+					if(!isCheckedSMBRT) {//若没有被检测过，说明中间件进程一直在运行，修改检测标识为已检测
+						sendMesBRTask.setChecked(true);
+						System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
+						unCheckCountSMBRT=0;//未检测次数清零
+					}
+					else {//若中间件的检测标识是已检测，说明停止运行了，就得累加未检测次数，看看是否真的停止运行
+						unCheckCountSMBRT++;
+					}
+					System.out.println("unCheckCountSMBRT==="+unCheckCountSMBRT);
+					
+					if(unCheckCountSMBRT>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
+						System.out.println("复活.....");
+						stopDKJavaBRRunner();//先停止中间件进程
+						startDKJavaBRRunner();//再开启中间件进程，以免占用内存资源
+						unCheckCountSMBRT=0;//未检测次数归零
+						System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
+					}
 				}
-				else {//若中间件的检测标识是已检测，说明停止运行了，就得累加未检测次数，看看是否真的停止运行
-					unCheckCountSMBRT++;
-				}
-				System.out.println("unCheckCountSMBRT==="+unCheckCountSMBRT);
-				
-				if(unCheckCountSMBRT>3) {//未检测次数累计三次以上，说明中间件真的停止运行了，需要再次启动中间件
-					System.out.println("复活.....");
-					stopDKJavaBRRunner();//先停止中间件进程
-					startDKJavaBRRunner();//再开启中间件进程，以免占用内存资源
-					unCheckCountSMBRT=0;//未检测次数归零
-					System.out.println("isCheckedSMBRT2==="+isCheckedSMBRT);
-				}
-				*/
+				timeSMBRT++;
 				
 				
 				
