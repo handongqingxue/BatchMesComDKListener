@@ -3,6 +3,10 @@ package com.batchMesComDKListener.util;
 public class Constant {
 
 	/**
+	 * 应用程序文件名
+	 */
+	public static final String EXE_NAME="runner.exe";
+	/**
 	 * 系统托盘标题
 	 */
 	public static final String TRAY_ICON_TITLE="看门狗程序";

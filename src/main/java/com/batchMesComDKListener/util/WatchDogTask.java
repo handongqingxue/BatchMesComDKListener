@@ -8,18 +8,18 @@ public class WatchDogTask extends TimerTask {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
-		//runBatFile("cmd /c c:/runner.exe");//自杀前先重启
-		runBatFile("cmd /c D:/BatchMesComDKListener/runner.exe");//自杀前先重启
-		LogUtil.writeInLog("start next runner.exe");
+		LogUtil.writeInLog("restart watchDog.exe");
+		runBatFile("cmd /c taskkill /f /im watchDog.exe");
+		LogUtil.writeInLog("exit watchDog.exe");//先关闭
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LogUtil.writeInLog("exit pre runner.exe");
-		System.exit(0);
+		//runBatFile("cmd /c c:/watchDog.exe");//再启动
+		runBatFile("cmd /c D:/BatchMesComDKListener/watchDog.exe");//再启动
+		LogUtil.writeInLog("start watchDog.exe");
 	}
 	
 	public void runBatFile(String fileUrl) {

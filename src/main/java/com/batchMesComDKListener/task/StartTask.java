@@ -2,6 +2,7 @@ package com.batchMesComDKListener.task;
 
 import com.batchMesComDKListener.util.Constant;
 import com.batchMesComDKListener.util.IniUtil;
+import com.batchMesComDKListener.util.LogUtil;
 import com.batchMesComDKListener.util.WatchDogManager;
 
 import java.awt.*;
@@ -23,7 +24,7 @@ public class StartTask {
         }
         else {
         	//打包exe:https://blog.csdn.net/qq_40298902/article/details/114489753
-    		WatchDogManager.restart();//设置好每周的重启任务
+    		WatchDogManager.restart();//设置好马上要执行的重启任务
     		
     		keepWatchTask=new KeepWatchTask();
     		keepWatchTask.setActive(true);
@@ -53,8 +54,6 @@ public class StartTask {
 		boolean isRunning=false;
         int runnerExeCount=0;
         try {
-			String exePath = "runner.exe";//指定要查询的.exe文件名
-			
 			ProcessBuilder processBuilder = new ProcessBuilder("tasklist");
 			Process process = processBuilder.start();
 			
@@ -62,7 +61,7 @@ public class StartTask {
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 			    for (String line; (line = reader.readLine()) != null; ) {
 		            //System.out.println("line=="+line);
-			        if (line.contains(exePath)) {
+			        if (line.contains(Constant.EXE_NAME)) {//指定要查询的.exe文件名
 			            runnerExeCount++;
 			        }
 			    }
